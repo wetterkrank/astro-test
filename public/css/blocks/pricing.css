@@ -1,0 +1,265 @@
+/*
+ * Pricing page — page-specific blocks only.
+ * Shared: css/utility/*, link, list-icon, customer-logo, extra-chip,
+ * integration-logo, member-count-info, faq, cta-band, compliance-badge.
+ * Breakpoints: sm 640, md 960, lg 1280.
+ */
+
+/* Core features multi-column list (pricing plan card only) */
+.core-feature-list li {
+  padding-block: 0.125rem;
+}
+
+@media (min-width: 640px) {
+  .core-feature-list {
+    column-count: 2;
+    column-gap: var(--gutter);
+  }
+}
+
+@media (min-width: 1280px) {
+  .core-feature-list {
+    column-count: 3;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Billing cycle switch
+ * ------------------------------------------------------------------------- */
+
+.pricing-cycle-select-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pricing-cycle-select {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  white-space: wrap;
+  cursor: pointer;
+  border-color: transparent;
+  background-color: transparent;
+  font-weight: 500;
+  color: var(--color-gray-70);
+  font-size: var(--font-size-14);
+  padding-block: 0.5em; /* keep cobot button rhythm after shared button base */
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.pricing-cycle-select:hover,
+.pricing-cycle-select:focus {
+  border-color: transparent;
+}
+
+.pricing-cycle-select[disabled],
+.pricing-cycle-select.disabled {
+  border-color: transparent;
+}
+
+.pricing-cycle-select--selected {
+  color: var(--color-gray);
+}
+
+.month-year-switch {
+  accent-color: var(--color-electricblue);
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-6);
+  border: solid 2px var(--color-gray-10);
+}
+
+.month-year-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.month-year-switch .slider-round {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 0;
+  bottom: 0;
+  background-color: var(--color-gray-80);
+  transition-property: background-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+  border-radius: var(--radius-6);
+}
+
+.month-year-switch .slider-round:hover,
+.month-year-switch .slider-round:focus {
+  background-color: var(--color-electricblue);
+}
+
+.month-year-switch input:checked + .slider-round {
+  right: 0;
+  left: unset;
+}
+
+.month-year-switch input:focus-visible + .slider-round {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Pricing slider card
+ * ------------------------------------------------------------------------- */
+
+.pricing-slider-wrapper {
+  position: relative;
+  background-color: var(--color-white);
+  padding-block: 3rem;
+  border-bottom: 1px solid var(--color-electricblue-20);
+  border-radius: var(--radius-4);
+  box-shadow: var(--elevation-2);
+}
+
+.pricing-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.5rem;
+  border-radius: var(--radius-3);
+  /* Custom props controlled from JS (pricing-slider.js → updateSliderFill) */
+  --min: 1;
+  --max: 180;
+  --value: 1;
+  --percent: 0;
+  /* Base (unfilled) track */
+  background-color: var(--color-gray-10);
+  /* Filled part: gradient whose width is --percent */
+  background-image: linear-gradient(90deg, var(--color-purple-70), var(--color-electricblue-70));
+  background-repeat: no-repeat;
+  background-size: var(--percent) 100%;
+}
+
+/* Chrome / Edge / Safari thumb */
+.pricing-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: var(--radius-5);
+  background-color: var(--color-electricblue-70);
+  border: 3px solid var(--color-electricblue-30);
+  cursor: ew-resize;
+  transition: background-color var(--transition-duration) var(--transition-timing-function);
+}
+
+/* Firefox thumb */
+.pricing-slider input[type="range"]::-moz-range-thumb {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: var(--radius-5);
+  background-color: var(--color-electricblue-70);
+  border: 3px solid var(--color-electricblue-30);
+  cursor: ew-resize;
+  transition: background-color var(--transition-duration) var(--transition-timing-function);
+}
+
+/* Firefox unfilled track */
+.pricing-slider input[type="range"]::-moz-range-track {
+  height: 0.5rem;
+  border-radius: var(--radius-3);
+  background-color: var(--color-gray-10);
+}
+
+.pricing-slider input[type="range"]::-moz-range-progress {
+  height: 0.5rem;
+  border-radius: var(--radius-3);
+  background: linear-gradient(90deg, var(--color-purple-70), var(--color-electricblue-70));
+}
+
+.pricing-slider input[type="range"]:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 6px;
+}
+
+.pricing-core-features {
+  position: relative;
+  padding: 2rem;
+  border-radius: var(--radius-4);
+  border: 1px solid var(--color-electricblue-20);
+}
+
+.pricing-core-features__tiny-label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  background-color: var(--color-green-20);
+  border: 4px solid var(--color-green-10);
+  color: var(--color-green-90);
+  padding: 0.25rem 1.5rem;
+  border-radius: var(--radius-5);
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.discount-label {
+  background-color: var(--color-yellow);
+  color: var(--color-gray);
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border-radius: var(--radius-6);
+  padding: 0.25rem 0.75rem;
+}
+
+.pricing-max-members-copy {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-property: display, height, translate;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+  transition-behavior: allow-discrete;
+  height: 0;
+  opacity: 0;
+  translate: 0 -1rem;
+}
+
+.max-members-active .pricing-max-members-copy {
+  display: flex;
+  height: auto;
+  opacity: 1;
+  translate: 0 0;
+
+  @starting-style {
+    height: 0;
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}
+
+.pricing-copy-custom {
+  display: none;
+  font-weight: 700;
+  font-size: var(--font-size-24);
+}
+
+.max-members-active .pricing-copy-default {
+  display: none;
+}
+
+.max-members-active .pricing-copy-custom {
+  display: revert;
+}
+

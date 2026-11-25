@@ -1,0 +1,247 @@
+/* Hero — layout only. Type/buttons/links/badges come from shared blocks. */
+
+.hero {
+  padding-block: 2rem;
+}
+
+@media (min-width: 960px) {
+  .hero {
+    padding-block: 3rem;
+  }
+}
+
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.hero__copy > * {
+  margin-block: 0;
+}
+
+.hero__copy .btn-group {
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .hero__copy .btn-group {
+    width: auto;
+  }
+}
+
+.hero__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-5);
+}
+
+@media (min-width: 960px) {
+  .hero__media {
+    border-radius: var(--radius-6);
+  }
+}
+
+/* Main landing hero */
+
+.hero--main .grid {
+  row-gap: 1.5rem;
+}
+
+.hero--main .hero__heading,
+.hero--main .btn-group,
+.hero--main .rating-badge {
+  margin-block: 0;
+}
+
+.hero--main .btn-group {
+  width: 100%;
+}
+
+.hero--main .rating-badge {
+  justify-self: center;
+}
+
+@media (min-width: 960px) {
+  .hero--main .hero__heading,
+  .hero--main .hero__media {
+    grid-row: 1;
+  }
+
+  .hero--main .btn-group,
+  .hero--main .rating-badge {
+    grid-row: 2;
+    align-self: center;
+  }
+
+  .hero--main .btn-group {
+    width: auto;
+  }
+
+  .hero--main .rating-badge {
+    justify-self: end;
+  }
+}
+
+.hero__heading {
+  margin-block: 0;
+  font-size: clamp(1.75rem, 0.9rem + 2.5vw, 3.625rem);
+  font-weight: 700;
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-tight);
+  max-width: 34ch;
+  text-wrap: balance;
+}
+
+/* Rotating line — em cushion so height tracks the clamp size (cobot_www) */
+
+.hero-rotating-line {
+  --height: 1.3em;
+  position: relative;
+  height: calc(2 * var(--height));
+  overflow: hidden;
+}
+
+.hero-rotating-line__item {
+  display: block;
+  position: absolute;
+  line-height: var(--height);
+  transform: translateY(200%);
+}
+
+.hero-rotating-line__item[data-show] {
+  transform: translateY(0);
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.hero-rotating-line__item[data-up] {
+  transform: translateY(-100%);
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rotating-line__item[data-show],
+  .hero-rotating-line__item[data-up] {
+    transition: none;
+  }
+}
+
+/* Hub hero — from 960px column 1 is skipped:
+   title 2–9, lede 2–6, actions 2–10, media 3–9 */
+
+.hero--hub .grid {
+  align-items: start;
+  row-gap: 1.5rem;
+}
+
+.hero--hub .grid > h1,
+.hero--hub .grid > .bodycopy--default {
+  margin-block: 0;
+}
+
+.hero--hub .hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.hero--hub .hero__actions .btn-group {
+  width: 100%;
+}
+
+.hero--hub .hero__actions .rating-badge {
+  align-self: center;
+}
+
+@media (min-width: 960px) {
+  .hero--hub .hero__actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero--hub .hero__actions .btn-group {
+    width: auto;
+  }
+
+  .hero--hub .hero__actions .rating-badge {
+    align-self: auto;
+  }
+}
+
+/* Article hero — float media into tinted band below (learn + case study) */
+
+.hero--article {
+  padding-block-end: 0;
+}
+
+.hero--article .hero__copy {
+  gap: 1rem;
+}
+
+.hero--article .hero__media-wrap {
+  position: relative;
+  min-height: 16rem;
+}
+
+@media (min-width: 960px) {
+  .hero--article .hero__media-wrap {
+    min-height: 100%;
+  }
+}
+
+.hero--article .hero__media-float {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 960px) {
+  .hero--article .hero__media-float {
+    position: absolute;
+    inset-block-start: 3rem;
+    inset-inline: 0;
+    height: calc(100% + 12rem);
+  }
+}
+
+.hero--article .hero__media {
+  width: 100%;
+  height: 100%;
+  min-height: 16rem;
+  object-fit: cover;
+  box-shadow: var(--elevation-1);
+}
+
+@media (min-width: 960px) {
+  .hero--article .hero__media {
+    min-height: 0;
+  }
+}
+
+/* Tinted band under article hero (maps .article__info-section) */
+
+.article-band {
+  margin-block-start: 3rem;
+  padding-block: 3rem;
+  background-color: var(--color-electricblue-10);
+}
+
+@media (min-width: 960px) {
+  .article-band {
+    margin-block-start: 5rem;
+    padding-block-start: 7rem;
+    padding-block-end: 4rem;
+  }
+
+  /* Match cobot_www .article__info-section padding-top: 13rem */
+  .hero--article + .article-band {
+    padding-block-start: 13rem;
+  }
+}

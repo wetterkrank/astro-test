@@ -1,0 +1,26 @@
+---
+interface Props {
+  id: string;
+  heading: string;
+  text: string;
+  primary: { label: string; href: string };
+  secondary?: { label: string; href: string };
+  /** Analytics location, e.g. "learn_article_page". */
+  location?: string;
+}
+
+const { id, heading, text, primary, secondary, location } = Astro.props;
+---
+
+<section class="cta-band" aria-labelledby={id}>
+  <div class="container">
+    <div class="cta-band__inner">
+      <h2 class="cta-band__heading" id={id}>{heading}</h2>
+      <p class="cta-band__text">{text}</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--full btn--brand" href={primary.href} data-google-event="Free Trial" data-location={location}>{primary.label}</a>
+        {secondary && <a class="btn btn--brand" href={secondary.href}>{secondary.label}</a>}
+      </div>
+    </div>
+  </div>
+</section>

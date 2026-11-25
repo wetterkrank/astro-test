@@ -1,0 +1,66 @@
+.logo {
+  display: flex;
+  align-items: center;
+  max-width: 4.5rem;
+  height: var(--topbar-height);
+  margin-right: 1rem;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-2);
+  color: var(--color-gray);
+}
+
+@media (min-width: 640px) {
+  .logo {
+    max-width: 6rem;
+  }
+}
+
+.logo:hover,
+.logo:focus {
+  outline: none;
+}
+
+.logo:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+}
+
+/* Soft light sweep — CSS only */
+.logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 25%,
+    rgb(255 255 255 / 0.22) 45%,
+    transparent 65%,
+    transparent 100%
+  );
+  transform: translateX(-55%);
+  transition: transform 1.15s var(--transition-timing-function);
+  pointer-events: none;
+}
+
+.logo:hover::after,
+.logo:focus-visible::after {
+  transform: translateX(55%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo::after {
+    content: none;
+  }
+}
+
+.logo__mark {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 4rem;
+}

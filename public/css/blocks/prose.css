@@ -1,0 +1,146 @@
+/* Prose — styles HTML from the CMS editor (headings, lists, links, images, etc.)
+   without needing classes on each tag. Add .bodycopy--default on the same
+   element for base font size. Link look comes from link.css (same as .link-inline). */
+
+.prose {
+  line-height: 1.667;
+}
+
+/* Lead — same scale as .bodycopy--big */
+.prose > p:first-of-type {
+  font-size: var(--font-size-24);
+}
+
+.prose ul,
+.prose ol {
+  margin-block: 0 1.5rem;
+  margin-inline: 0;
+  padding-inline-start: 1rem;
+}
+
+.prose li:not(:last-child) {
+  margin-block-end: 1rem;
+}
+
+.prose h3 a::after {
+  content: " »";
+  color: var(--color-electricblue);
+}
+
+.prose a img {
+  transition-property: transform;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.prose a:hover img,
+.prose a:focus img {
+  border: none;
+  transform: translateY(-0.75rem);
+}
+
+.prose img,
+.prose figure {
+  display: block;
+  margin-block: 2rem 2.5rem;
+  margin-inline: auto;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-4);
+  box-shadow: var(--elevation-1);
+}
+
+.prose figure img {
+  margin-block: 0;
+}
+
+.prose figcaption {
+  margin-block-start: 0.75rem;
+  font-size: var(--font-size-14);
+  color: var(--color-gray-70);
+  text-align: center;
+}
+
+.prose video {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin-block: 2rem 2.5rem;
+}
+
+.prose iframe {
+  display: block;
+  max-width: 100%;
+  margin-block: 2rem 2.5rem;
+  margin-inline: auto;
+  border-width: 0;
+}
+
+.prose blockquote {
+  margin-block: 0 1.5rem;
+  margin-inline: 0;
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid var(--color-electricblue-30);
+  text-wrap: pretty;
+}
+
+.prose hr {
+  margin-block: 2rem;
+}
+
+.prose pre {
+  margin-block: 0 1.5rem;
+  overflow-x: auto;
+  padding: 0.75rem;
+  font-size: var(--font-size-12);
+  line-height: 1.75;
+  font-family: Menlo, Monaco, Courier, monospace;
+  border-radius: var(--radius-1);
+  border: 1px solid var(--color-gray-20);
+  color: var(--color-gray-70);
+  background-color: var(--color-white);
+}
+
+.prose code {
+  font-family: Menlo, Monaco, Courier, monospace;
+  font-size: 0.9em;
+}
+
+.prose :not(pre) > code {
+  padding-block: 0.1em;
+  padding-inline: 0.35em;
+  border-radius: var(--radius-1);
+  background-color: var(--color-gray-4);
+}
+
+.prose table {
+  width: 100%;
+  margin-block: 0 1.5rem;
+  border-collapse: collapse;
+}
+
+.prose th,
+.prose td {
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
+  border-bottom: 1px solid var(--color-gray-20);
+  text-align: start;
+}
+
+.prose th {
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prose a img {
+    transition: none;
+  }
+
+  .prose a:hover img,
+  .prose a:focus img {
+    transform: none;
+  }
+}

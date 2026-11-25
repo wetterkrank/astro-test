@@ -1,0 +1,72 @@
+/* Feature row — media + title/lede/checklist. Type/list from shared blocks. */
+
+.feature-row {
+  padding-block: 3rem;
+}
+
+@media (min-width: 960px) {
+  .feature-row {
+    padding-block: 4rem;
+  }
+}
+
+.feature-row__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.feature-row__copy > * {
+  margin-block: 0;
+}
+
+.feature-row__copy .list-icon {
+  margin-block: 0;
+  width: 100%;
+}
+
+.feature-row__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-5);
+}
+
+@media (min-width: 960px) {
+  .feature-row__media {
+    border-radius: var(--radius-6);
+  }
+}
+
+/* Member mobile app — store badges + bottom-cropped phone */
+
+.feature-row--app {
+  overflow: hidden;
+}
+
+.feature-row--app .feature-row__media {
+  max-width: 17.5rem;
+  margin-inline: auto;
+  border-radius: 0;
+}
+
+@media (min-width: 960px) {
+  .feature-row--app {
+    padding-block-end: 0;
+  }
+
+  .feature-row--app .grid {
+    align-items: end;
+  }
+
+  .feature-row--app .feature-row__copy {
+    padding-block-end: 5rem;
+    gap: 2rem;
+  }
+
+  .feature-row--app .feature-row__media {
+    max-width: none;
+    margin-inline: 0;
+  }
+}

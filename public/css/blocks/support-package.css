@@ -1,0 +1,219 @@
+/* Support package — hub cards, benefits, comparison table */
+
+.support-package {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-gray-20);
+  border-radius: var(--radius-4);
+  background-color: var(--color-white);
+}
+
+.support-package__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.5rem;
+  text-align: start;
+}
+
+.support-package__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.support-package__name {
+  margin: 0;
+  font-size: var(--font-size-20);
+  font-weight: 700;
+  line-height: var(--line-height-title);
+}
+
+.support-package__description {
+  margin: 0;
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-copy);
+  color: var(--color-gray-70);
+}
+
+.support-package__duration {
+  margin: 0;
+  color: var(--color-electricblue);
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  line-height: var(--line-height-ui);
+}
+
+.support-package__cost {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.15rem 0.25rem;
+  margin: 0;
+}
+
+.support-package__price {
+  font-size: var(--font-size-32);
+  font-weight: 700;
+  line-height: var(--line-height-title);
+}
+
+.support-package__currency {
+  margin-block-start: 0.35em;
+  color: var(--color-electricblue);
+  font-size: var(--font-size-14);
+  font-weight: 700;
+  line-height: var(--line-height-solid);
+}
+
+.support-package-table .support-package__cost {
+  justify-content: center;
+}
+
+.support-package-table .support-package__price,
+.support-package-table .support-package__currency {
+  color: var(--color-gray);
+}
+
+.support-package-table .support-package__price {
+  font-size: var(--font-size-20);
+}
+
+.support-package-table .support-package__currency {
+  margin-block-start: 0.15em;
+  font-size: var(--font-size-14);
+}
+
+.support-package-benefits {
+  padding: 2rem;
+  border-radius: var(--radius-4);
+  background-color: var(--color-white);
+}
+
+.support-package-benefits ul {
+  list-style: none;
+  margin-block: 0;
+  padding-inline-start: 0;
+}
+
+@media (min-width: 960px) {
+  .support-package-benefits ul {
+    column-count: 2;
+    column-gap: var(--gutter);
+  }
+}
+
+.support-package-benefits li {
+  position: relative;
+  max-width: 28rem;
+  margin-block-end: 1rem;
+  padding-inline-start: 1.75rem;
+  color: var(--color-gray-80);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-copy);
+  list-style: none;
+}
+
+.support-package-benefits li:last-child {
+  margin-block-end: 0;
+}
+
+.support-package-benefits li::before {
+  content: "+";
+  position: absolute;
+  inset-inline-start: 0;
+  color: var(--color-electricblue);
+  font-weight: 700;
+}
+
+.support-package-table-wrap {
+  overflow-x: auto;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-gray-20);
+  border-radius: var(--radius-4);
+  background-color: var(--color-white);
+}
+
+.support-package-table {
+  width: 100%;
+  padding: 0;
+  border-collapse: collapse;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-copy);
+}
+
+.support-package-table tr:not(:last-child) :is(td, th) {
+  border-bottom: 1px solid var(--color-gray-20);
+}
+
+.support-package-table th {
+  font-size: var(--font-size-16);
+  font-weight: 700;
+  line-height: var(--line-height-title);
+}
+
+.support-package-table :is(td, th) {
+  padding: 0.75rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.support-package-table :is(td, th):not(:last-child) {
+  border-inline-end: 1px solid var(--color-gray-20);
+}
+
+.support-package-table :is(td, th):first-child {
+  text-align: start;
+}
+
+.support-package-table .current-package {
+  background-color: var(--color-electricblue-4);
+}
+
+.support-package-table__details {
+  padding: 1rem 0.75rem;
+}
+
+.support-package-table__details .support-package__duration {
+  margin-block-end: 0.5rem;
+  text-align: center;
+}
+
+.support-package-table__check {
+  display: block;
+  margin-inline: auto;
+  color: var(--color-electricblue);
+  font-size: var(--font-size-18);
+}
+
+@media (min-width: 960px) {
+  .support-package {
+    padding: 2rem 2.5rem;
+  }
+
+  .support-package-table {
+    font-size: var(--font-size-16);
+  }
+
+  .support-package-table :is(td, th) {
+    padding: 1rem 1.25rem;
+  }
+
+  .support-package-table__details {
+    padding: 1.25rem 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .support-package-table :is(td, th) {
+    padding: 1.25rem 1.5rem;
+  }
+}

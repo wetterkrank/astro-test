@@ -1,0 +1,117 @@
+/* Text links — opt-in classes (do not restyle all anchors; chrome uses its own).
+   Patterns adapted from cobot_www components/_links.scss */
+
+/* .prose a — CMS bare anchors (wysiwyg/markdown); same treatment as .link-inline */
+.link-inline,
+.prose a {
+  color: var(--color-gray);
+  text-decoration: none;
+  border-bottom: 2px solid var(--color-electricblue-30);
+  transition-property: color, border-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.link-inline:hover,
+.link-inline:focus,
+.prose a:hover,
+.prose a:focus {
+  color: var(--color-electricblue);
+  border-color: var(--color-electricblue-50);
+  outline: none;
+}
+
+.link-inline:focus-visible,
+.prose a:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+}
+
+/* Heading / in-page anchor — border appears on hover (cobot_www .link--border-on-hover) */
+.link--border-on-hover {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition-property: color, border-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.link--border-on-hover:hover,
+.link--border-on-hover:focus {
+  color: var(--color-electricblue);
+  border-color: var(--color-electricblue-20);
+  outline: none;
+}
+
+.link--border-on-hover:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+}
+
+/* Arrow link — cobot_www .link--has-arrow (type inherits; pair with bodycopy--* as needed) */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  max-width: 100%;
+  color: var(--color-electricblue);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: none;
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.link-arrow__label {
+  min-width: 0;
+}
+
+.link-arrow__icon {
+  position: relative;
+  inset-block-start: 1px;
+  flex-shrink: 0;
+  font-size: 0.8em;
+  line-height: var(--line-height-solid);
+  transition: transform var(--transition-duration) var(--transition-timing-function);
+}
+
+.link-arrow:hover,
+.link-arrow:focus {
+  color: var(--color-gray);
+  outline: none;
+}
+
+.link-arrow:hover .link-arrow__icon,
+.link-arrow:focus .link-arrow__icon {
+  transform: translateX(0.5rem);
+}
+
+.link-arrow:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+}
+
+/* Back variant — cobot_www .link--has-arrow--back */
+.link-arrow--back:hover .link-arrow__icon,
+.link-arrow--back:focus .link-arrow__icon {
+  transform: translateX(-0.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-inline,
+  .prose a,
+  .link--border-on-hover,
+  .link-arrow,
+  .link-arrow__icon {
+    transition: none;
+  }
+
+  .link-arrow:hover .link-arrow__icon,
+  .link-arrow:focus .link-arrow__icon,
+  .link-arrow--back:hover .link-arrow__icon,
+  .link-arrow--back:focus .link-arrow__icon {
+    transform: none;
+  }
+}

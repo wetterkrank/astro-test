@@ -1,0 +1,151 @@
+/* Animated full-bleed reel — logos or icon+text chips.
+   Duplicate .reel__group once for a seamless loop.
+   Gap lives as padding-inline-end on each group (not track gap)
+   so translateX(-50%) lands exactly on one group width. */
+
+.reel {
+  overflow: hidden;
+  padding-block: 2rem;
+}
+
+@media (min-width: 960px) {
+  .reel {
+    padding-block: 3rem;
+  }
+}
+
+.reel__viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.reel__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation-name: reel-scroll;
+  animation-duration: 45s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.reel__group {
+  --reel-gap: 2.5rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--reel-gap);
+  list-style: none;
+  margin-block: 0;
+  margin-inline: 0;
+  padding-block: 0;
+  padding-inline-start: 0;
+  padding-inline-end: var(--reel-gap);
+}
+
+@media (min-width: 960px) {
+  .reel__group {
+    --reel-gap: 3.5rem;
+  }
+}
+
+.reel__item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  color: var(--color-gray-40);
+}
+
+.reel__logo {
+  display: block;
+  height: 2.75rem;
+  width: auto;
+  max-width: 10rem;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+@media (min-width: 960px) {
+  .reel__logo {
+    height: 3.5rem;
+    max-width: 13rem;
+  }
+}
+
+.reel__icon {
+  flex-shrink: 0;
+  font-size: var(--font-size-16);
+  color: var(--color-gray-40);
+}
+
+.reel__label {
+  font-size: var(--font-size-14);
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--color-gray-50);
+}
+
+@media (min-width: 960px) {
+  .reel__label {
+    font-size: var(--font-size-16);
+  }
+}
+
+@keyframes reel-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel__viewport {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .reel__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+    max-width: var(--container-inner);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    row-gap: 1rem;
+  }
+
+  .reel__group {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-inline-end: 0;
+    row-gap: 1rem;
+  }
+
+  .reel__group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .reel__label {
+    white-space: normal;
+  }
+}

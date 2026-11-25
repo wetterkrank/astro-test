@@ -1,0 +1,236 @@
+/* Buttons: appearance (outline / filled), tone (neutral / brand / inverse), size, stretch, icon */
+
+/* Native <button> shares the base (matches cobot_www button, .btn). */
+button,
+.btn {
+  --btn-bg: transparent;
+  --btn-border: var(--color-gray);
+  --btn-fg: var(--color-gray);
+  --btn-bg-hover: transparent;
+  --btn-border-hover: var(--color-gray);
+  --btn-fg-hover: var(--color-gray);
+  --btn-bg-active: transparent;
+  --btn-border-active: var(--color-gray-90);
+  --btn-fg-active: var(--color-gray-90);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  padding: 0.5em 1.5em;
+  border-radius: var(--radius-6);
+  border: 2px solid var(--btn-border);
+  background-color: var(--btn-bg);
+  color: var(--btn-fg);
+  text-decoration: none;
+  font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: var(--font-size-18);
+  font-weight: 700;
+  font-style: normal;
+  line-height: var(--line-height-button);
+  letter-spacing: var(--letter-spacing-button);
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  transition-property: background-color, color, border-color, opacity, filter;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+button:hover,
+button:focus,
+.btn:hover,
+.btn:focus {
+  background-color: var(--btn-bg-hover);
+  border-color: var(--btn-border-hover);
+  color: var(--btn-fg-hover);
+  text-decoration: none;
+  outline: none;
+}
+
+button:active,
+.btn:active {
+  background-color: var(--btn-bg-active);
+  border-color: var(--btn-border-active);
+  color: var(--btn-fg-active);
+}
+
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+  box-shadow: var(--elevation-focus);
+}
+
+.btn--small {
+  font-size: var(--font-size-16);
+}
+
+/* Filled = .btn--full (legacy name; not “full width”) */
+.btn--full {
+  --btn-bg: var(--color-gray);
+  --btn-border: var(--color-gray);
+  --btn-fg: var(--color-white);
+  --btn-bg-hover: var(--color-electricblue);
+  --btn-border-hover: var(--color-electricblue);
+  --btn-fg-hover: var(--color-white);
+  --btn-bg-active: var(--color-electricblue-80);
+  --btn-border-active: var(--color-electricblue-80);
+  --btn-fg-active: var(--color-white);
+}
+
+/* Brand tone */
+.btn--brand {
+  --btn-bg: transparent;
+  --btn-border: var(--color-electricblue);
+  --btn-fg: var(--color-electricblue);
+  --btn-bg-hover: var(--color-electricblue-10);
+  --btn-border-hover: var(--color-electricblue);
+  --btn-fg-hover: var(--color-electricblue);
+  --btn-bg-active: var(--color-electricblue-20);
+  --btn-border-active: var(--color-electricblue-80);
+  --btn-fg-active: var(--color-electricblue-80);
+}
+
+.btn--full.btn--brand {
+  --btn-bg: var(--color-electricblue);
+  --btn-border: var(--color-electricblue);
+  --btn-fg: var(--color-white);
+  --btn-bg-hover: var(--color-electricblue-80);
+  --btn-border-hover: var(--color-electricblue-80);
+  --btn-fg-hover: var(--color-white);
+  --btn-bg-active: var(--color-electricblue-90);
+  --btn-border-active: var(--color-electricblue-90);
+  --btn-fg-active: var(--color-white);
+}
+
+/* Soft filled — light gray (cobot_www .btn--full.btn--gray-4) */
+.btn--full.btn--gray-4 {
+  --btn-bg: var(--color-gray-4);
+  --btn-border: var(--color-gray-4);
+  --btn-fg: var(--color-gray);
+  --btn-bg-hover: var(--color-gray-10);
+  --btn-border-hover: var(--color-gray-10);
+  --btn-fg-hover: var(--color-gray);
+  --btn-bg-active: var(--color-gray-20);
+  --btn-border-active: var(--color-gray-20);
+  --btn-fg-active: var(--color-gray);
+}
+
+/* Inverse tone — for use on dark backgrounds */
+.btn--on-dark {
+  --btn-bg: transparent;
+  --btn-border: var(--color-white);
+  --btn-fg: var(--color-white);
+  --btn-bg-hover: transparent;
+  --btn-border-hover: var(--color-gray-20);
+  --btn-fg-hover: var(--color-gray-20);
+  --btn-bg-active: rgb(255 255 255 / 0.12);
+  --btn-border-active: var(--color-gray-10);
+  --btn-fg-active: var(--color-gray-10);
+}
+
+.btn--full.btn--on-dark {
+  --btn-bg: var(--color-white);
+  --btn-border: var(--color-white);
+  --btn-fg: var(--color-electricblue);
+  --btn-bg-hover: var(--color-gray-20);
+  --btn-border-hover: var(--color-gray-20);
+  --btn-fg-hover: var(--color-electricblue);
+  --btn-bg-active: var(--color-gray-10);
+  --btn-border-active: var(--color-gray-10);
+  --btn-fg-active: var(--color-electricblue-80);
+}
+
+/* Width */
+.btn--stretch {
+  width: 100%;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+@media (max-width: 959px) {
+  .btn-group > .btn:not(.btn--small) {
+    width: 100%;
+  }
+}
+
+/* Trailing / leading icon — arrow nudge matches .link-arrow__icon */
+.btn__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 0.75em;
+  line-height: var(--line-height-solid);
+  transition: transform var(--transition-duration) var(--transition-timing-function);
+}
+
+.btn__icon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.btn:hover .btn__icon,
+.btn:focus .btn__icon {
+  transform: translateX(0.5rem);
+}
+
+/* Disabled */
+.btn:disabled,
+.btn[aria-disabled="true"],
+.btn--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading — keep size; mark busy in markup */
+.btn[aria-busy="true"] {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn[aria-busy="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1.1em;
+  height: 1.1em;
+  border: 2px solid var(--btn-fg);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .btn,
+  .btn__icon {
+    transition: none;
+  }
+
+  .btn:hover .btn__icon,
+  .btn:focus .btn__icon {
+    transform: none;
+  }
+
+  .btn[aria-busy="true"]::after {
+    animation: none;
+    border-right-color: var(--btn-fg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

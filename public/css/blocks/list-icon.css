@@ -1,0 +1,59 @@
+/* Icon lists — check markers (ported from cobot_www typography list-icon) */
+
+.list-icon {
+  padding-inline-start: 0;
+}
+
+.list-icon > li {
+  position: relative;
+  list-style: none;
+  padding-inline-start: 2em;
+}
+
+/* Base marker: Font Awesome check glyph */
+.list-icon > li::before {
+  content: "\f00c";
+  position: absolute;
+  top: 0.125em;
+  inset-inline-start: 0;
+  display: block;
+  height: 1.25em;
+  width: 1.25em;
+  font-family: "Font Awesome 7 Pro";
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.25em;
+  text-align: center;
+  color: currentColor;
+}
+
+.list-icon > .list-icon__item-reset {
+  padding-inline-start: 0;
+}
+
+.list-icon > .list-icon__item-reset::before,
+.list-icon > .list-icon__item-reset::after {
+  display: none;
+}
+
+.list--icon-check-circle > li::before,
+.list--icon-check-circle-purple > li::before {
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1em;
+  padding: 0.25rem;
+  border-radius: var(--radius-6);
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.list--icon-check-circle > li::before {
+  background-color: var(--color-electricblue-10);
+  background-image: url("../../assets/img/icons/check-electricblue.svg");
+}
+
+.list--icon-check-circle-purple > li::before {
+  background-color: var(--color-purple-4);
+  background-image: url("../../assets/img/icons/check-purple.svg");
+}

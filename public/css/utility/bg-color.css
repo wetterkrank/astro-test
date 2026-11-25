@@ -1,0 +1,15 @@
+/* Shared background color utilities */
+
+.bg--white { background-color: var(--color-white); }
+
+.bg--gray { background-color: var(--color-gray); }
+.bg--gray-4 { background-color: var(--color-gray-4); }
+.bg--gray-10 { background-color: var(--color-gray-10); }
+
+.bg--electricblue,
+.bg--electricblue-70 {
+  background-color: var(--color-electricblue-70);
+}
+
+.bg--electricblue-4 { background-color: var(--color-electricblue-4); }
+.bg--electricblue-10 { background-color: var(--color-electricblue-10); }

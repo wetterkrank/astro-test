@@ -1,0 +1,48 @@
+/* Author byline + page date */
+
+.author {
+  --author-image-size: 2.5rem;
+  --author-gap: 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: var(--author-gap);
+}
+
+.author__label {
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-copy);
+}
+
+.author__image {
+  width: var(--author-image-size);
+  height: var(--author-image-size);
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.author__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.author__name {
+  margin: 0;
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-ui);
+}
+
+.author--text .author__name {
+  font-size: var(--font-size-14);
+  color: var(--color-gray-80);
+}
+
+.page-date {
+  margin: 0;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-ui);
+  color: var(--color-gray-50);
+}
