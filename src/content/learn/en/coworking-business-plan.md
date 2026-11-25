@@ -20,7 +20,7 @@ Whether you want to focus on freelancers or corporates, look for investors or se
 
 (An important note to keep in mind is “successful” is not the same as “profitable.” 😉)
 
-The business plan can be as formal or informal as you like (depending on who you’ll be showing it to), but it should include some key pieces of information. What pieces of information depend on a number of factors, but there’s no better place to start than by looking at business plans from established coworking spaces. Some that we can recommend are:
+The business plan can be as formal or informal as you like (depending on who you’ll be showing it to), but it should include some key pieces of information. What pieces of information depend on a number of factors, but **there’s no better place to start than by looking at business plans from established coworking spaces. Some that we can recommend are**:
 
 - [New Work Cities](https://nwc.co/3/coworking-business-model-template/)
 - [Social Business City Wiesbaden](https://de.scribd.com/doc/71803696/Business-Plan-Coworking-project-Wiesbaden)
