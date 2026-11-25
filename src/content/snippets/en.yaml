@@ -7,3 +7,7 @@ article:
   authorLabel: "Author:"
   updatedOn: Updated on
   faqHeadline: Frequently asked questions
+notFound:
+  title: Page not found
+  text: Sorry, this page doesn’t exist.
+  homeLabel: Go to the homepage

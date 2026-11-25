@@ -1,0 +1,18 @@
+---
+import MainLandingLayout from '../layouts/MainLandingLayout.astro';
+import { getLocalized } from '../i18n/content';
+import { defaultLocale } from '../i18n/locales';
+import { localizedUrl } from '../i18n/utils';
+
+// Static hosting serves one 404 page for every locale, so it uses the default locale.
+const locale = defaultLocale;
+const { data: snippets } = await getLocalized('snippets', locale);
+---
+
+<MainLandingLayout title={snippets.notFound.title} locale={locale}>
+  <div class="container page-main__preview tc">
+    <h1>{snippets.notFound.title}</h1>
+    <p>{snippets.notFound.text}</p>
+    <p><a class="link-arrow" href={localizedUrl(locale)}><span class="link-arrow__label">{snippets.notFound.homeLabel}</span></a></p>
+  </div>
+</MainLandingLayout>
