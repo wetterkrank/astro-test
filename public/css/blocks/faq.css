@@ -1,0 +1,102 @@
+/* FAQ accordion — reusable details/summary (ported from cobot_www components/_faq.scss) */
+
+.faq {
+  --faq-spacing: 1.25rem;
+
+  border-block-start: 3px solid var(--color-gray-10);
+}
+
+.faq:last-child {
+  border-block-end: 3px solid var(--color-gray-10);
+}
+
+.faq[open] .faq__question::after {
+  transform: rotate(180deg);
+}
+
+.faq::details-content {
+  height: 0;
+  opacity: 0;
+  overflow: clip;
+  translate: 0 -0.35rem;
+  transition-property: height, opacity, translate, content-visibility;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+  transition-behavior: allow-discrete;
+}
+
+.faq[open]::details-content {
+  height: auto;
+  opacity: 1;
+  translate: 0 0;
+
+  @starting-style {
+    height: 0;
+    opacity: 0;
+    translate: 0 -0.35rem;
+  }
+}
+
+.faq__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--gutter);
+  margin: 0;
+  padding-block-start: var(--faq-spacing);
+  padding-block-end: calc(var(--faq-spacing) / 2);
+  padding-inline: 0;
+  list-style: none;
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.faq__question > :is(h3, h4, .heading--xs) {
+  margin: 0;
+}
+
+.faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq__question:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+}
+
+/* Chevron — Font Awesome chevron-down */
+.faq__question::after {
+  content: "\f078";
+  display: block;
+  flex-shrink: 0;
+  width: var(--faq-spacing);
+  height: var(--faq-spacing);
+  font-family: "Font Awesome 7 Pro";
+  font-style: normal;
+  font-weight: 900;
+  line-height: var(--faq-spacing);
+  text-align: center;
+  transform-origin: center;
+  transition-property: transform;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.faq__answer {
+  padding-block-end: var(--faq-spacing);
+}
+
+.faq__answer :is(ul, ol) {
+  list-style-position: inside;
+  padding-inline-start: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq::details-content,
+  .faq__question,
+  .faq__question::after {
+    transition: none;
+  }
+}

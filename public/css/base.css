@@ -1,0 +1,246 @@
+/* Breakpoints (min-width): 640px, 960px, 1280px */
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../assets/fonts/open-sans-variable-latin.woff2") format("woff2 supports variations"),
+    url("../assets/fonts/open-sans-variable-latin.woff2") format("woff2-variations");
+  font-stretch: 75% 100%;
+  font-weight: 300 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../assets/fonts/open-sans-italic-variable-latin.woff2") format("woff2 supports variations"),
+    url("../assets/fonts/open-sans-italic-variable-latin.woff2") format("woff2-variations");
+  font-stretch: 75% 100%;
+  font-style: italic;
+  font-weight: 300 800;
+  font-display: swap;
+}
+
+:root {
+  --color-electricblue: #1628f4;
+  --color-electricblue-light: #a2a9fb;
+  --color-electricblue-100: #09123b;
+  --color-electricblue-90: #0c1d72;
+  --color-electricblue-80: #122db2;
+  --color-electricblue-70: #1628f4;
+  --color-electricblue-60: #3e56f6;
+  --color-electricblue-50: #7085f9;
+  --color-electricblue-40: #a2a9fb;
+  --color-electricblue-30: #c2d0fd;
+  --color-electricblue-20: #dce6fe;
+  --color-electricblue-10: #eff3fe;
+  --color-electricblue-4: #f8faff;
+
+  --color-coral: #ff8577;
+  --color-purple-100: #2a0a2f;
+  --color-purple-90: #380c40;
+  --color-purple-80: #53125f;
+  --color-purple-70: #723483;
+  --color-purple-60: #9155a6;
+  --color-purple-50: #b084c4;
+  --color-purple-40: #cfa9d9;
+  --color-purple-30: #e2cce7;
+  --color-purple-20: #e4d9ea;
+  --color-purple-10: #ede7f0;
+  --color-purple-4: #f6f3f9;
+
+  --color-green-100: #0f3215;
+  --color-green-90: #1e4c22;
+  --color-green-80: #2c6b2c;
+  --color-green-70: #388538;
+  --color-green-60: #4da54b;
+  --color-green-50: #72be6e;
+  --color-green-40: #9cd492;
+  --color-green-30: #bfe5b4;
+  --color-green-20: #d7f0cf;
+  --color-green-10: #ebf8e8;
+  --color-green-4: #f6fcf5;
+
+  --color-green: #388538;
+  --color-yellow: #f9d22d;
+  --color-orange: #f17625;
+  --color-pink: #f2c4d3;
+  --color-peach: #ffecc1;
+  --color-cream: #fff9f0;
+  --color-fixed-purple-10: #ede7f0;
+  --color-fixed-red-10: #ffe2d7;
+  --color-blue-10: #ecf1f9;
+  --color-blue-30: #c1d7ec;
+  --color-blue-50: #85b1d7;
+  --color-blue-70: #1e75b3;
+
+  --color-focus-electricblue: #9edcff;
+
+  --color-gray: #191d2f;
+  --color-gray-90: #2c3042;
+  --color-gray-80: #45495b;
+  --color-gray-70: #5c6072;
+  --color-gray-60: #737789;
+  --color-gray-50: #898d9f;
+  --color-gray-40: #a0a4b6;
+  --color-gray-30: #b6bacf;
+  --color-gray-20: #cdd1e3;
+  --color-gray-10: #e5e8f4;
+  --color-gray-4: #f5f6fb;
+
+  --color-white: #fff;
+
+  /* Ported from cobot_www abstracts/_font-sizes.scss */
+  --font-size-72: 4.5rem;
+  --font-size-50: 3.125rem;
+  --font-size-40: 2.5rem;
+  --font-size-32: 2rem;
+  --font-size-28: 1.75rem;
+  --font-size-24: 1.5rem;
+  --font-size-20: 1.25rem;
+  --font-size-18: 1.125rem;
+  --font-size-16: 1rem;
+  --font-size-14: 0.875rem;
+  --font-size-12: 0.75rem;
+
+  --line-height-solid: 1;
+  --line-height-title: 1.3;
+  --line-height-ui: 1.35;
+  --line-height-button: 1.375;
+  --line-height-copy: 1.5;
+
+  --letter-spacing-body: 0.0125em;
+  --letter-spacing-button: 0.025em;
+  --letter-spacing-label: 0.025rem; /* footer column links */
+  --letter-spacing-tight: -0.02em; /* hero titles */
+
+  /* Ported from cobot_www abstracts/_borders.scss */
+  --radius-1: 0.125rem; /* 2px */
+  --radius-2: 0.25rem; /* 4px — inputs, logo focus, skip links */
+  --radius-3: 0.5rem; /* 8px — nav/chrome focus rings */
+  --radius-4: 1rem; /* 16px */
+  --radius-5: 1.5rem; /* 24px */
+  --radius-6: 2rem; /* 32px — buttons */
+
+  /* Elevation (box-shadow) */
+  --elevation-1: 0 4px 12px rgb(0 0 0 / 0.15); /* raised chip / logo / tooltip / badge */
+  --elevation-2: 0 0 10px rgb(0 0 0 / 0.1); /* soft card glow */
+  --elevation-focus: 0 0 0 6px rgb(25 29 47 / 0.12); /* soft ring with :focus-visible */
+
+  --transition-duration: 0.15s;
+  --transition-timing-function: ease-in-out;
+
+  /* Allow height: 0 ↔ auto transitions (FAQ, max-members panel). */
+  interpolate-size: allow-keywords;
+
+  --topbar-height: 4rem;
+  --gutter: 16px;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --gutter: 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-gray);
+  line-height: var(--line-height-copy);
+  -webkit-font-smoothing: antialiased;
+  font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-body);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Ported from cobot_www components/_images.scss — keeps intrinsic aspect ratio */
+img {
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+}
+
+.page-main {
+  flex: 1 0 auto;
+}
+
+.page-main__preview {
+  padding-block: 3rem;
+}
+
+/* Reserve space for the fixed header */
+.has-header {
+  padding-top: var(--topbar-height);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+#main-content:focus,
+#navigation:focus,
+#footer:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

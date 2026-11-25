@@ -1,0 +1,163 @@
+skipLinks:
+  label: Skip links
+  main: Skip to main content
+  navigation: Skip to navigation
+  footer: Skip to footer
+logoLabel: Cobot Homepage
+primaryNavLabel: Primary
+mobileNavLabel: Mobile primary
+drawer:
+  label: Menu
+  open: Menu
+  close: Close menu
+languageLabel: Select language
+login:
+  label: Log In
+  href: "#"
+cta:
+  label: Try Cobot
+  href: "#"
+
+features:
+  label: Features
+  drawerIcon: fa-grid
+  hub:
+    blurb: "All-in-one coworking management: members, bookings, invoicing and more."
+    label: All Features
+    href: "#"
+  groups:
+    - label: Run your space
+      items:
+        - icon: fa-users
+          title: Memberships & Subscriptions
+          desc: Plans, contracts and member profiles
+          href: "#"
+        - icon: fa-calendar-check
+          title: Bookings & Office Rentals
+          desc: Desks, meeting rooms and private offices
+          href: "#"
+        - icon: fa-key
+          title: Access Systems
+          desc: Door access linked to bookings
+          href: "#"
+    - label: Manage your business
+      items:
+        - icon: fa-file-invoice-dollar
+          title: Automated Invoicing & Billing
+          desc: Recurring invoices and online payments
+          href: "#"
+        - icon: fa-chart-simple
+          title: Analytics & Forecasts
+          desc: Revenue, occupancy and trends
+          href: "#"
+        - icon: fa-chart-network
+          title: Multi Location & Networks
+          desc: Every location in one account
+          href: "#"
+  featured:
+    label: Featured
+    cards:
+      - title: White Label Solutions
+        desc: Your brand on the member portal and mobile app
+        href: "#"
+        image: { src: /assets/img/branding_color_palette_member_profile_ui.webp, width: 136, height: 124 }
+      - title: External Bookings
+        desc: Turn empty rooms into extra revenue
+        href: "#"
+        image: { src: /assets/img/meeting_room_photo_booking_calendar_ui.webp, width: 136, height: 136 }
+
+integrations:
+  label: Integrations
+  drawerIcon: fa-puzzle-piece
+  hub:
+    blurb: Hundreds of integrations, and more lorem ipsum
+    label: All Integrations
+    href: "#"
+  categories:
+    drawerLabel: Connect your tools
+    items:
+      - label: Payments
+        icon: fa-credit-card
+        href: "#"
+        image: { src: /assets/img/hand_phone_payment_received_provider_logos.webp, width: 367, height: 184 }
+      - label: Accounting
+        icon: fa-file-invoice-dollar
+        href: "#"
+        image: { src: /assets/img/laptop_phone_invoices_qr_codes_desk.webp, width: 367, height: 184 }
+      - label: Door Access
+        icon: fa-key
+        href: "#"
+        image: { src: /assets/img/glass_door_smart_lock_access_provider_logos.webp, width: 367, height: 184 }
+  promos:
+    drawerLabel: Build and automate
+    items:
+      - title: E-invoicing
+        desc: short subtext here, super nice for eu spaces, yay.
+        icon: fa-receipt
+        href: "#"
+        badgeImage: { src: /assets/img/eu_flag.webp, width: 66, height: 44 }
+      - title: API · MCP · Zapier
+        desc: short subtext here, everything is for free. Omg.
+        icon: fa-code
+        href: "#"
+        badgeText: FREE
+        drawerBadgeText: Free
+
+pricing:
+  label: Pricing
+  href: "#"
+  drawerIcon: fa-tag
+
+resources:
+  label: Resources
+  drawerIcon: fa-lightbulb
+  featuredLabel: Featured
+  bands:
+    - label: Get started
+      items:
+        - icon: fa-video
+          title: Training
+          desc: Live onboarding for your team
+          href: "#"
+        - icon: fa-arrows-rotate
+          title: Migrate to Cobot
+          desc: Move your data from another tool
+          href: "#"
+        - icon: fa-code
+          title: API
+          desc: Developer docs and reference
+          href: "#"
+        - icon: fa-circle-question
+          title: Help Center
+          desc: Answers to common questions
+          href: "#"
+      card:
+        title: Talk to our team
+        desc: Book a free demo and get your space set up.
+        linkLabel: Book a Demo
+        href: "#"
+        image: { src: /assets/img/two_people_talking_tablet_member_profile_ui.webp, width: 136, height: 124 }
+    - label: Learn and stay updated
+      items:
+        - icon: fa-pen
+          title: Blog
+          desc: Tips for running a coworking space
+          href: "#"
+        - icon: fa-envelope
+          title: Newsletter
+          desc: News and updates in your inbox
+          href: "#"
+        - icon: fa-buildings
+          title: Case Studies
+          desc: How spaces grow with Cobot
+          href: "#"
+        - icon: fa-square-list
+          title: Guides
+          desc: Step-by-step setup guides
+          href: "#"
+      card:
+        title: What’s new
+        desc: The latest product updates and releases.
+        linkLabel: See Updates
+        href: "#"
+        image: { src: /assets/img/product_updates_whats_new.webp, width: 136, height: 124 }

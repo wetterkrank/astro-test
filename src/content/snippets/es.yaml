@@ -1,0 +1,9 @@
+tryForFree:
+  heading: Prueba Cobot gratis
+  text: Empieza tu mes de prueba gratuito. Sin compromiso ni tarjeta de crédito.
+  primary: { label: Empieza tu prueba gratuita, href: "#" }
+  secondary: { label: Agenda una demo, href: "#" }
+article:
+  authorLabel: "Autor:"
+  updatedOn: Actualizado el
+  faqHeadline: Preguntas frecuentes

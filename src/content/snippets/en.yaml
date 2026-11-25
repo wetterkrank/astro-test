@@ -1,0 +1,9 @@
+tryForFree:
+  heading: Try Cobot For Free
+  text: Start your free 1 month trial. No commitment or credit card required.
+  primary: { label: Start Your Free Trial, href: "#" }
+  secondary: { label: Schedule a demo, href: "#" }
+article:
+  authorLabel: "Author:"
+  updatedOn: Updated on
+  faqHeadline: Frequently asked questions

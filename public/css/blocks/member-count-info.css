@@ -1,0 +1,93 @@
+/* Member-count info popover */
+
+.member-count-info {
+  flex-shrink: 0;
+}
+
+.member-count-info__icon-button {
+  anchor-name: --member-count-info-button;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  vertical-align: middle;
+  color: var(--color-gray-50);
+  font-size: var(--font-size-24);
+  line-height: var(--line-height-solid);
+  transition: color var(--transition-duration) var(--transition-timing-function);
+}
+
+.member-count-info__icon-button:hover,
+.member-count-info__icon-button:focus {
+  color: var(--color-electricblue);
+  outline: none;
+}
+
+.member-count-info__icon-button:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+  border-radius: var(--radius-2);
+}
+
+.member-count-info__tooltip {
+  position-anchor: --member-count-info-button;
+  position-try-fallbacks: flip-block flip-inline;
+  position: absolute;
+  margin: 0;
+  inset: unset;
+  left: anchor(center);
+  bottom: anchor(top);
+  margin-block: 0.5rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-20);
+  border-radius: var(--radius-3);
+  box-shadow: var(--elevation-1);
+  padding: 1rem;
+  color: var(--color-gray-90);
+  width: 22rem;
+  max-width: calc(100vw - 2rem);
+  font-size: var(--font-size-12);
+  font-weight: 500;
+  text-align: left;
+  transition-property: display, opacity, translate;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+  transition-behavior: allow-discrete;
+  opacity: 0;
+  translate: -50% -1rem;
+}
+
+.member-count-info__tooltip:popover-open {
+  opacity: 1;
+  translate: -50% 0;
+}
+
+@starting-style {
+  .member-count-info__tooltip:popover-open {
+    opacity: 0;
+    translate: -50% 1rem;
+  }
+}
+
+.member-count-info__tooltip ul {
+  margin-block-end: 1rem;
+}
+
+.member-count-info__tooltip ul > li {
+  margin-block: 0.5rem;
+}
+
+.member-count-info__tooltip > :last-child {
+  margin-block-end: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member-count-info__icon-button,
+  .member-count-info__tooltip {
+    transition: none;
+  }
+}

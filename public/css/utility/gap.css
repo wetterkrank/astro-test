@@ -1,0 +1,15 @@
+/* Shared gap utilities (same rem steps as tachyons spacing) */
+
+.gap0 { gap: 0; }
+.gap1 { gap: 0.25rem; }
+.gap2 { gap: 0.5rem; }
+.gap3 { gap: 1rem; }
+.gap4 { gap: 1.5rem; }
+.gap5 { gap: 2rem; }
+.gap6 { gap: 3rem; }
+.gap7 { gap: 4rem; }
+.gap8 { gap: 8rem; }
+
+@media (min-width: 960px) {
+  .gap3-md { gap: 1rem; }
+}

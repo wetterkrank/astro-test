@@ -1,0 +1,57 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { locales, type Locale } from '../i18n/locales';
+import { resolveAlternates, type Alternates } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  locale: Locale;
+  /** URLs of this page in other locales. Locales left out link to their home page. */
+  alternates?: Alternates;
+  /** Page-specific stylesheets from /public/css, loaded after the shared chrome styles. */
+  styles?: string[];
+}
+
+const { title, description, locale, alternates, styles = [] } = Astro.props;
+const switcherUrls = resolveAlternates(alternates);
+
+// Styles used by the header and footer (chrome), in the template's order.
+const chromeStyles = [
+  'base.css',
+  'layout.css',
+  'fontawesome.css',
+  'blocks/skip-links.css',
+  'blocks/logo.css',
+  'blocks/header.css',
+  'blocks/nav.css',
+  'blocks/link.css',
+  'blocks/button.css',
+  'blocks/language-select.css',
+  'blocks/footer.css',
+];
+const stylesheets = [...new Set([...chromeStyles, ...styles])];
+---
+
+<!doctype html>
+<html lang={locales[locale].htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+    {stylesheets.map((href) => <link rel="stylesheet" href={`/css/${href}`} />)}
+    <slot name="head" />
+  </head>
+  <body class="has-header">
+    <Header locale={locale} alternates={switcherUrls} />
+    <slot />
+    <Footer locale={locale} alternates={switcherUrls} />
+  </body>
+</html>

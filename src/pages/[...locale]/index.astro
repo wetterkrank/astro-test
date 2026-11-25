@@ -1,0 +1,22 @@
+---
+import MainLandingLayout from '../../layouts/MainLandingLayout.astro';
+import { getLocalized } from '../../i18n/content';
+import { defaultLocale, localeCodes, type Locale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  // "/" for the default locale, "/de/", "/es/" for the others.
+  return localeCodes.map((locale) => ({
+    params: { locale: locale === defaultLocale ? undefined : locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const { data: page } = await getLocalized('landing', locale);
+---
+
+<MainLandingLayout title={page.title} description={page.description} locale={locale}>
+  <div class="container page-main__preview tc">
+    <p>{page.demo}</p>
+  </div>
+</MainLandingLayout>

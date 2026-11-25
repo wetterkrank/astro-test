@@ -1,0 +1,83 @@
+madeIn:
+  before: Hecho con
+  heart: amor
+  after: en Berlín
+
+columns:
+  - sections:
+      - heading: Funciones
+        links:
+          - { label: Resumen, href: "#" }
+          - { label: Conectores de IA, href: "#" }
+          - { label: App móvil para miembros, href: "#" }
+          - { label: Analíticas, href: "#" }
+          - { label: Control de acceso automatizado, href: "#" }
+          - { label: Facturación y pagos automatizados, href: "#" }
+          - { label: Reservas y calendario, href: "#" }
+          - { label: Pases de día, href: "#" }
+          - { label: Reserva de eventos y venta de entradas, href: "#" }
+          - { label: Reservas externas, href: "#" }
+          - { label: Gestión de visitantes y miembros, href: "#" }
+          - { label: Portal de miembros de marca blanca, href: "#" }
+      - heading: Plataforma
+        links:
+          - { label: Integraciones, href: "#" }
+          - { label: API, href: "#" }
+          - { label: Estado, href: "#" }
+  - sections:
+      - heading: Recursos
+        links:
+          - { label: Soporte, href: "#" }
+          - { label: Centro de ayuda de Cobot, href: "#" }
+          - { label: Paquetes de soporte, href: "#" }
+          - { label: Casos de éxito, href: "#" }
+          - { label: Migra a Cobot, href: "#" }
+          - { label: Blog, href: "#" }
+          - { label: Newsletter de marketing para coworkings, href: "#" }
+          - { label: Precios, href: "#" }
+  - sections:
+      - heading: Aprende
+        source: learn
+  - sections:
+      - heading: Empresa
+        links:
+          - { label: Sobre nosotros, href: "#" }
+          - { label: Team, href: "#" }
+          - { label: Valores, href: "#" }
+          - { label: Prensa, href: "#" }
+          - { label: Responsabilidad social, href: "#" }
+          - { label: Declaración de accesibilidad, href: "#" }
+          - { label: Empleo, href: "#" }
+          - { label: Programa de afiliados, href: "#" }
+          - { label: Solicitud de colaboración, href: "#" }
+          - { label: VERI*FACTU, href: "#" }
+
+cta:
+  label: Agenda una demo
+  href: "#"
+  note: Reserva una demo personal gratuita para conocer las funciones principales de Cobot y ver cómo podemos ayudarte a alcanzar tus objetivos
+
+appStores:
+  heading: App para miembros
+  links:
+    - label: Descargar en App Store
+      href: "#"
+      image: { src: /assets/img/badge-app-store.png, alt: Descargar en App Store, width: 120, height: 40 }
+    - label: Disponible en Google Play
+      href: "#"
+      image: { src: /assets/img/badge-google-play.png, alt: Disponible en Google Play, width: 135, height: 40 }
+
+brandLabel: Cobot
+social:
+  - { title: YouTube, icon: fa-youtube, href: "https://www.youtube.com/channel/UC45CIBMOLpnmNaDCih0ZWJA/playlists?view_as=subscriber" }
+  - { title: Facebook, icon: fa-facebook, href: "https://www.facebook.com/cobot.me" }
+  - { title: Instagram, icon: fa-instagram, href: "https://www.instagram.com/cobot_me/" }
+  - { title: LinkedIn, icon: fa-linkedin, href: "https://www.linkedin.com/company/cobot/" }
+
+languageLabel: Seleccionar idioma
+copyright: © 2026 Upstream - Agile GmbH
+legalLinks:
+  - { label: Aviso legal, href: "#" }
+  - { label: Condiciones del servicio, href: "#" }
+  - { label: Política de privacidad, href: "#" }
+  - { label: Cookies, href: "#" }

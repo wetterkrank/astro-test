@@ -1,0 +1,32 @@
+/* Customer logo row */
+
+.customer-logos {
+  display: inline-flex;
+  gap: calc(2 * var(--gutter));
+  opacity: 0.4;
+  justify-content: center;
+}
+
+.customer-logos--pricing {
+  gap: var(--gutter);
+}
+
+@media (min-width: 640px) {
+  .customer-logos--pricing {
+    gap: calc(1.25 * var(--gutter));
+  }
+}
+
+.customer-logo {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.customer-logo img {
+  display: block;
+  object-fit: contain;
+}
+
+.customer-logo--pricing {
+  width: 4rem;
+}

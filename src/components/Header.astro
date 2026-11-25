@@ -1,0 +1,355 @@
+---
+import CobotLogo from './CobotLogo.astro';
+import LanguageSelect from './LanguageSelect.astro';
+import { getLocalized } from '../i18n/content';
+import { localizedUrl } from '../i18n/utils';
+import type { Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  alternates: Record<Locale, string>;
+}
+
+const { locale, alternates } = Astro.props;
+const { data: t } = await getLocalized('header', locale);
+const { features, integrations, pricing, resources } = t;
+---
+
+<nav class="skip-links" aria-label={t.skipLinks.label}>
+  <a class="skip-link" href="#main-content">{t.skipLinks.main}</a>
+  <a class="skip-link" href="#navigation">{t.skipLinks.navigation}</a>
+  <a class="skip-link" href="#footer">{t.skipLinks.footer}</a>
+</nav>
+
+<header class="header" role="banner">
+  <div class="container header__bar">
+    <a class="logo" href={localizedUrl(locale)} aria-label={t.logoLabel} title={t.logoLabel}>
+      <CobotLogo class="logo__mark" aria-hidden="true" focusable="false" />
+    </a>
+
+    <div class="nav">
+      <nav class="nav__primary" id="navigation" aria-label={t.primaryNavLabel}>
+        <ul class="nav__list">
+          <li>
+            <button type="button" class="nav__link nav__link--sub" popovertarget="panel-features" interestfor="panel-features" aria-controls="panel-features" aria-haspopup="dialog">
+              {features.label}
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav__link nav__link--sub" popovertarget="panel-integrations" interestfor="panel-integrations" aria-controls="panel-integrations" aria-haspopup="dialog">
+              {integrations.label}
+            </button>
+          </li>
+          <li>
+            <a class="nav__link" href={pricing.href}>{pricing.label}</a>
+          </li>
+          <li>
+            <button type="button" class="nav__link nav__link--sub" popovertarget="panel-resources" interestfor="panel-resources" aria-controls="panel-resources" aria-haspopup="dialog">
+              {resources.label}
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav__actions">
+        <LanguageSelect id="locale-header" class="language-select--header" label={t.languageLabel} locale={locale} alternates={alternates} />
+        <a class="nav__login" href={t.login.href}>{t.login.label}</a>
+        <a class="btn btn--small btn--full nav__cta" href={t.cta.href}>{t.cta.label}</a>
+      </div>
+
+      <button
+        type="button"
+        class="nav__toggle"
+        popovertarget="nav-drawer"
+        aria-controls="nav-drawer"
+        aria-haspopup="dialog"
+      >
+        <span class="visually-hidden nav__toggle-text nav__toggle-text--open">{t.drawer.open}</span>
+        <span class="visually-hidden nav__toggle-text nav__toggle-text--close">{t.drawer.close}</span>
+        <span class="nav__toggle-bars" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Desktop submenu panels (mega-menus). Content mirrored in #nav-drawer for mobile. -->
+  <div id="panel-features" class="nav-panel nav-panel--features" popover aria-label={features.label}>
+    <div class="nav-mega">
+      <div class="nav-mega__body">
+        {
+          features.groups.map((group) => (
+            <div class="nav-mega__group">
+              <h2 class="nav-mega__label">{group.label}</h2>
+              <ul class="nav-mega__list">
+                {group.items.map((item) => (
+                  <li>
+                    <a class="nav-mega__item" href={item.href}>
+                      <span class="nav-mega__item-icon" aria-hidden="true"><i class:list={['fa-regular', item.icon]}></i></span>
+                      <span class="nav-mega__item-text">
+                        <span class="nav-mega__item-title">{item.title}</span>
+                        {item.desc && <span class="nav-mega__item-desc">{item.desc}</span>}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+        <div class="nav-mega__featured">
+          <h2 class="nav-mega__label">{features.featured.label}</h2>
+          {
+            features.featured.cards.map((card) => (
+              <a class="nav-mega__card" href={card.href}>
+                <img class="nav-mega__card-media" src={card.image.src} alt={card.image.alt} width={card.image.width} height={card.image.height} />
+                <span class="nav-mega__card-text">
+                  <span class="nav-mega__card-title">{card.title}</span>
+                  <span class="nav-mega__card-desc">{card.desc}</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <a class="nav-mega__footer" href={features.hub.href} aria-labelledby="nav-hub-features-label" aria-describedby="nav-hub-features-blurb">
+        <span class="nav-mega__footer-blurb" id="nav-hub-features-blurb">{features.hub.blurb}</span>
+        <span class="link-arrow nav-mega__footer-link">
+          <span class="link-arrow__label" id="nav-hub-features-label">{features.hub.label}</span>
+          <i class="fa-regular fa-arrow-right link-arrow__icon" aria-hidden="true"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div id="panel-integrations" class="nav-panel nav-panel--integrations" popover aria-label={integrations.label}>
+    <div class="nav-mega">
+      <div class="nav-mega__body nav-mega__body--integrations">
+        {
+          integrations.categories.items.map((category) => (
+            <a class="nav-mega__category" href={category.href}>
+              <span class="nav-mega__category-header link-arrow"><span class="link-arrow__label">{category.label}</span> <i class="fa-regular fa-arrow-right link-arrow__icon" aria-hidden="true"></i></span>
+              <img class="nav-mega__category-media" src={category.image.src} alt={category.image.alt} width={category.image.width} height={category.image.height} />
+            </a>
+          ))
+        }
+        {
+          integrations.promos.items.map((promo) => (
+            <a class="nav-mega__promo" href={promo.href}>
+              {promo.badgeImage ? (
+                <span class="nav-mega__promo-badge" aria-hidden="true">
+                  <img src={promo.badgeImage.src} alt={promo.badgeImage.alt} width={promo.badgeImage.width} height={promo.badgeImage.height} />
+                </span>
+              ) : promo.badgeText ? (
+                <span class="nav-mega__promo-badge nav-mega__promo-badge--free">{promo.badgeText}</span>
+              ) : null}
+              <span class="nav-mega__promo-text">
+                <span class="nav-mega__promo-title">{promo.title}</span>
+                <span class="nav-mega__promo-desc">{promo.desc}</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+      <a class="nav-mega__footer" href={integrations.hub.href} aria-labelledby="nav-hub-integrations-label" aria-describedby="nav-hub-integrations-blurb">
+        <span class="nav-mega__footer-blurb" id="nav-hub-integrations-blurb">{integrations.hub.blurb}</span>
+        <span class="link-arrow nav-mega__footer-link">
+          <span class="link-arrow__label" id="nav-hub-integrations-label">{integrations.hub.label}</span>
+          <i class="fa-regular fa-arrow-right link-arrow__icon" aria-hidden="true"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div id="panel-resources" class="nav-panel nav-panel--resources" popover aria-label={resources.label}>
+    <div class="nav-mega nav-mega--resources">
+      {
+        resources.bands.map((band) => (
+          <div class="nav-mega__band">
+            <div class="nav-mega__band-links">
+              <h2 class="nav-mega__label">{band.label}</h2>
+              <ul class="nav-mega__grid">
+                {band.items.map((item) => (
+                  <li>
+                    <a class="nav-mega__item" href={item.href}>
+                      <span class="nav-mega__item-icon" aria-hidden="true"><i class:list={['fa-regular', item.icon]}></i></span>
+                      <span class="nav-mega__item-text">
+                        <span class="nav-mega__item-title">{item.title}</span>
+                        {item.desc && <span class="nav-mega__item-desc">{item.desc}</span>}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a class="nav-mega__card nav-mega__card--cta" href={band.card.href}>
+              <img class="nav-mega__card-media" src={band.card.image.src} alt={band.card.image.alt} width={band.card.image.width} height={band.card.image.height} />
+              <span class="nav-mega__card-text">
+                <span class="nav-mega__card-title">{band.card.title}</span>
+                <span class="nav-mega__card-desc">{band.card.desc}</span>
+                {band.card.linkLabel && (
+                  <span class="link-arrow nav-mega__card-link" aria-hidden="true"><span class="link-arrow__label">{band.card.linkLabel}</span> <i class="fa-regular fa-arrow-right link-arrow__icon"></i></span>
+                )}
+              </span>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</header>
+
+<!-- Mobile navigation drawer (Popover) -->
+<div id="nav-drawer" class="nav-drawer" popover aria-label={t.drawer.label}>
+  <nav class="nav-drawer__nav" aria-label={t.mobileNavLabel}>
+    <details class="nav-drawer__details">
+      <summary class="nav-drawer__summary">
+        <span class="nav-drawer__tile" aria-hidden="true"><i class:list={['fa-regular', features.drawerIcon]}></i></span>
+        <span class="nav-drawer__summary-label">{features.label}</span>
+        <i class="fa-regular fa-chevron-down nav-drawer__chevron" aria-hidden="true"></i>
+      </summary>
+      <div class="nav-drawer__panel">
+        <a class="nav-drawer__hub link-arrow" href={features.hub.href}>
+          <span class="link-arrow__label">{features.hub.label}</span>
+          <i class="fa-regular fa-arrow-right link-arrow__icon" aria-hidden="true"></i>
+        </a>
+        {
+          features.groups.map((group) => (
+            <div class="nav-drawer__group">
+              <h3 class="nav-drawer__group-label">{group.label}</h3>
+              <ul class="nav-drawer__list">
+                {group.items.map((item) => (
+                  <li>
+                    <a class="nav-drawer__link" href={item.href}>
+                      <i class:list={['fa-regular', item.icon]} aria-hidden="true"></i>
+                      <span class="nav-drawer__link-text">
+                        <span class="nav-drawer__link-title">{item.title}</span>
+                        {item.desc && <span class="nav-drawer__link-desc">{item.desc}</span>}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+        <div class="nav-drawer__group">
+          <h3 class="nav-drawer__group-label">{features.featured.label}</h3>
+          {
+            features.featured.cards.map((card) => (
+              <a class="nav-drawer__card" href={card.href}>
+                <img src={card.image.src} alt={card.image.alt} width="96" height="80" />
+                <span class="nav-drawer__card-text">
+                  <span class="nav-drawer__card-title">{card.title}</span>
+                  <span class="nav-drawer__card-desc">{card.desc}</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </details>
+
+    <details class="nav-drawer__details">
+      <summary class="nav-drawer__summary">
+        <span class="nav-drawer__tile" aria-hidden="true"><i class:list={['fa-regular', integrations.drawerIcon]}></i></span>
+        <span class="nav-drawer__summary-label">{integrations.label}</span>
+        <i class="fa-regular fa-chevron-down nav-drawer__chevron" aria-hidden="true"></i>
+      </summary>
+      <div class="nav-drawer__panel">
+        <a class="nav-drawer__hub link-arrow" href={integrations.hub.href}>
+          <span class="link-arrow__label">{integrations.hub.label}</span>
+          <i class="fa-regular fa-arrow-right link-arrow__icon" aria-hidden="true"></i>
+        </a>
+        <div class="nav-drawer__group">
+          <h3 class="nav-drawer__group-label">{integrations.categories.drawerLabel}</h3>
+          <ul class="nav-drawer__list">
+            {
+              integrations.categories.items.map((category) => (
+                <li>
+                  <a class="nav-drawer__link" href={category.href}>
+                    <i class:list={['fa-regular', category.icon]} aria-hidden="true"></i>
+                    <span class="nav-drawer__link-title">{category.label}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="nav-drawer__group">
+          <h3 class="nav-drawer__group-label">{integrations.promos.drawerLabel}</h3>
+          <ul class="nav-drawer__list">
+            {
+              integrations.promos.items.map((promo) => (
+                <li>
+                  <a class="nav-drawer__link" href={promo.href}>
+                    <i class:list={['fa-regular', promo.icon]} aria-hidden="true"></i>
+                    <span class="nav-drawer__link-title">{promo.title}</span>
+                    {promo.drawerBadgeText && <span class="nav-drawer__badge">{promo.drawerBadgeText}</span>}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <a class="nav-drawer__summary nav-drawer__summary--link" href={pricing.href}>
+      <span class="nav-drawer__tile" aria-hidden="true"><i class:list={['fa-regular', pricing.drawerIcon]}></i></span>
+      <span class="nav-drawer__summary-label">{pricing.label}</span>
+      <i class="fa-regular fa-arrow-right nav-drawer__chevron link-arrow__icon" aria-hidden="true"></i>
+    </a>
+
+    <details class="nav-drawer__details">
+      <summary class="nav-drawer__summary">
+        <span class="nav-drawer__tile" aria-hidden="true"><i class:list={['fa-regular', resources.drawerIcon]}></i></span>
+        <span class="nav-drawer__summary-label">{resources.label}</span>
+        <i class="fa-regular fa-chevron-down nav-drawer__chevron" aria-hidden="true"></i>
+      </summary>
+      <div class="nav-drawer__panel">
+        {
+          resources.bands.map((band) => (
+            <div class="nav-drawer__group">
+              <h3 class="nav-drawer__group-label">{band.label}</h3>
+              <ul class="nav-drawer__list">
+                {band.items.map((item) => (
+                  <li>
+                    <a class="nav-drawer__link" href={item.href}>
+                      <i class:list={['fa-regular', item.icon]} aria-hidden="true"></i>
+                      <span class="nav-drawer__link-text">
+                        <span class="nav-drawer__link-title">{item.title}</span>
+                        {item.desc && <span class="nav-drawer__link-desc">{item.desc}</span>}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+        <div class="nav-drawer__group">
+          <h3 class="nav-drawer__group-label">{resources.featuredLabel}</h3>
+          {
+            resources.bands.map(({ card }) => (
+              <a class="nav-drawer__card" href={card.href}>
+                <img src={card.image.src} alt={card.image.alt} width="96" height="80" />
+                <span class="nav-drawer__card-text">
+                  <span class="nav-drawer__card-title">{card.title}</span>
+                  <span class="nav-drawer__card-desc">{card.desc}</span>
+                  {card.linkLabel && (
+                    <span class="link-arrow nav-drawer__card-link" aria-hidden="true"><span class="link-arrow__label">{card.linkLabel}</span> <i class="fa-regular fa-arrow-right link-arrow__icon"></i></span>
+                  )}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </details>
+  </nav>
+
+  <div class="nav-drawer__actions">
+    <LanguageSelect id="locale-drawer" class="language-select--header" label={t.languageLabel} locale={locale} alternates={alternates} />
+    <a class="nav__login" href={t.login.href}>{t.login.label}</a>
+    <a class="btn btn--small btn--full nav__cta" href={t.cta.href}>{t.cta.label}</a>
+  </div>
+</div>

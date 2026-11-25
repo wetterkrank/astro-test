@@ -1,0 +1,120 @@
+---
+import CobotLogo from './CobotLogo.astro';
+import LanguageSelect from './LanguageSelect.astro';
+import { getEntriesForLocale, getLocalized, splitLocaleId } from '../i18n/content';
+import { localizedUrl } from '../i18n/utils';
+import { defaultLocale, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  alternates: Record<Locale, string>;
+}
+
+const { locale, alternates } = Astro.props;
+const { data: t } = await getLocalized('footer', locale);
+
+// Learn articles in this locale; fall back to the default locale's articles.
+let learnArticles = await getEntriesForLocale('learn', locale);
+if (learnArticles.length === 0) learnArticles = await getEntriesForLocale('learn', defaultLocale);
+const learnLinks = learnArticles.map((entry) => {
+  const { locale: entryLocale, slug } = splitLocaleId(entry.id);
+  return { label: entry.data.title, href: localizedUrl(entryLocale as Locale, `learn/${slug}`) };
+});
+---
+
+<footer class="footer" id="footer" role="contentinfo">
+  <section class="footer__berlin-bar">
+    <p class="footer__berlin">
+      {t.madeIn.before}
+      <span class="footer__berlin-heart">
+        <span class="footer__berlin-heart-label">{t.madeIn.heart}</span>
+        <img
+          class="footer__berlin-heart-image"
+          src="/assets/img/berlin-footer.svg"
+          alt=""
+          width="18"
+          height="60"
+          loading="lazy"
+          decoding="async"
+        />
+      </span>
+      {t.madeIn.after}
+    </p>
+  </section>
+
+  <div class="container footer__inner">
+    <div class="grid">
+      {
+        t.columns.map((column) => (
+          <ul class="footer__list">
+            {column.sections.map((section) => (
+              <>
+                <li class="footer__heading">{section.heading}</li>
+                {(section.source === 'learn' ? learnLinks : section.links).map((link) => (
+                  <li>
+                    <a class="footer__link" href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </>
+            ))}
+          </ul>
+        ))
+      }
+
+      <div class="footer__cta">
+        <div class="footer__cta-actions">
+          <a class="btn btn--small btn--full" href={t.cta.href}>{t.cta.label}</a>
+          <p class="footer__cta-note">{t.cta.note}</p>
+        </div>
+
+        <ul class="footer__app-stores">
+          <li class="footer__heading">{t.appStores.heading}</li>
+          <li>
+            <div class="footer__app-store-links">
+              {
+                t.appStores.links.map((store) => (
+                  <a class="footer__app-store-link" href={store.href} aria-label={store.label}>
+                    <img src={store.image.src} alt={store.image.alt} width={store.image.width} height={store.image.height} />
+                  </a>
+                ))
+              }
+            </div>
+          </li>
+        </ul>
+
+        <div class="footer__brand">
+          <CobotLogo class="footer__logo" width="96" height="28" role="img" aria-label={t.brandLabel} />
+          <ul class="footer__social">
+            {
+              t.social.map((item) => (
+                <li>
+                  <a class="footer__social-link" href={item.href} target="_blank" rel="noreferrer" title={item.title}>
+                    <i class:list={['fa-brands', item.icon]} aria-hidden="true"></i>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__language-select">
+        <LanguageSelect id="locale-footer" label={t.languageLabel} locale={locale} alternates={alternates} />
+      </div>
+
+      <div class="footer__copyright">
+        <div class="footer__copyright-year">{t.copyright}</div>
+        <div class="footer__copyright-links">
+          {
+            t.legalLinks.map((link, index) => (
+              <>
+                {index > 0 && <span class="footer__separator">|</span>}
+                <a class="footer__copyright-link" href={link.href}>{link.label}</a>
+              </>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

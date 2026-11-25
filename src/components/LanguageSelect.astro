@@ -1,0 +1,37 @@
+---
+import { locales, localeCodes, type Locale } from '../i18n/locales';
+
+interface Props {
+  id: string;
+  label: string;
+  locale: Locale;
+  /** URL of the current page in each locale. */
+  alternates: Record<Locale, string>;
+  class?: string;
+}
+
+const { id, label, locale, alternates, class: className } = Astro.props;
+---
+
+<div class:list={['language-select', className]} data-short={locales[locale].short}>
+  <label class="language-select__label" for={id}>{label}</label>
+  <i class="fa-solid fa-globe language-select__icon" aria-hidden="true"></i>
+  <select class="language-select__select" name="locale" id={id} data-language-select>
+    {
+      localeCodes.map((code) => (
+        <option value={code} data-href={alternates[code]} selected={code === locale}>
+          {locales[code].label}
+        </option>
+      ))
+    }
+  </select>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLSelectElement>('[data-language-select]').forEach((select) => {
+    select.addEventListener('change', () => {
+      const href = select.selectedOptions[0]?.dataset.href;
+      if (href) window.location.assign(href);
+    });
+  });
+</script>

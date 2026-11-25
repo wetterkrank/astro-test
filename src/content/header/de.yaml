@@ -1,0 +1,163 @@
+skipLinks:
+  label: Sprunglinks
+  main: Zum Hauptinhalt springen
+  navigation: Zur Navigation springen
+  footer: Zur Fußzeile springen
+logoLabel: Cobot Startseite
+primaryNavLabel: Hauptnavigation
+mobileNavLabel: Mobile Hauptnavigation
+drawer:
+  label: Menü
+  open: Menü
+  close: Menü schließen
+languageLabel: Sprache auswählen
+login:
+  label: Anmelden
+  href: "#"
+cta:
+  label: Cobot testen
+  href: "#"
+
+features:
+  label: Funktionen
+  drawerIcon: fa-grid
+  hub:
+    blurb: "Coworking-Verwaltung aus einer Hand: Mitglieder, Buchungen, Rechnungen und mehr."
+    label: Alle Funktionen
+    href: "#"
+  groups:
+    - label: Space betreiben
+      items:
+        - icon: fa-users
+          title: Mitgliedschaften & Abonnements
+          desc: Tarife, Verträge und Mitgliederprofile
+          href: "#"
+        - icon: fa-calendar-check
+          title: Buchungen & Büroflächen
+          desc: Schreibtische, Meetingräume und private Büros
+          href: "#"
+        - icon: fa-key
+          title: Zugangssysteme
+          desc: Türzugang passend zu Buchungen
+          href: "#"
+    - label: Unternehmen verwalten
+      items:
+        - icon: fa-file-invoice-dollar
+          title: Automatisierte Rechnungsstellung
+          desc: Wiederkehrende Rechnungen und Online-Zahlungen
+          href: "#"
+        - icon: fa-chart-simple
+          title: Analysen & Prognosen
+          desc: Umsatz, Auslastung und Trends
+          href: "#"
+        - icon: fa-chart-network
+          title: Mehrere Standorte & Netzwerke
+          desc: Alle Standorte in einem Konto
+          href: "#"
+  featured:
+    label: Empfohlen
+    cards:
+      - title: White-Label-Lösungen
+        desc: Ihre Marke im Mitgliederportal und in der App
+        href: "#"
+        image: { src: /assets/img/branding_color_palette_member_profile_ui.webp, width: 136, height: 124 }
+      - title: Externe Buchungen
+        desc: Machen Sie leere Räume zu Zusatzumsatz
+        href: "#"
+        image: { src: /assets/img/meeting_room_photo_booking_calendar_ui.webp, width: 136, height: 136 }
+
+integrations:
+  label: Integrationen
+  drawerIcon: fa-puzzle-piece
+  hub:
+    blurb: Hunderte Integrationen und mehr Lorem ipsum
+    label: Alle Integrationen
+    href: "#"
+  categories:
+    drawerLabel: Tools verbinden
+    items:
+      - label: Zahlungen
+        icon: fa-credit-card
+        href: "#"
+        image: { src: /assets/img/hand_phone_payment_received_provider_logos.webp, width: 367, height: 184 }
+      - label: Buchhaltung
+        icon: fa-file-invoice-dollar
+        href: "#"
+        image: { src: /assets/img/laptop_phone_invoices_qr_codes_desk.webp, width: 367, height: 184 }
+      - label: Türzugang
+        icon: fa-key
+        href: "#"
+        image: { src: /assets/img/glass_door_smart_lock_access_provider_logos.webp, width: 367, height: 184 }
+  promos:
+    drawerLabel: Entwickeln und automatisieren
+    items:
+      - title: E-Rechnung
+        desc: kurzer Untertext hier, super für EU-Spaces, juhu.
+        icon: fa-receipt
+        href: "#"
+        badgeImage: { src: /assets/img/eu_flag.webp, width: 66, height: 44 }
+      - title: API · MCP · Zapier
+        desc: kurzer Untertext hier, alles kostenlos. Omg.
+        icon: fa-code
+        href: "#"
+        badgeText: GRATIS
+        drawerBadgeText: Gratis
+
+pricing:
+  label: Preise
+  href: "#"
+  drawerIcon: fa-tag
+
+resources:
+  label: Ressourcen
+  drawerIcon: fa-lightbulb
+  featuredLabel: Empfohlen
+  bands:
+    - label: Erste Schritte
+      items:
+        - icon: fa-video
+          title: Schulung
+          desc: Live-Onboarding für Ihr Team
+          href: "#"
+        - icon: fa-arrows-rotate
+          title: Zu Cobot wechseln
+          desc: Daten aus einem anderen Tool übernehmen
+          href: "#"
+        - icon: fa-code
+          title: API
+          desc: Entwicklerdoku und Referenz
+          href: "#"
+        - icon: fa-circle-question
+          title: Hilfe-Center
+          desc: Antworten auf häufige Fragen
+          href: "#"
+      card:
+        title: Mit unserem Team sprechen
+        desc: Buchen Sie eine kostenlose Demo und richten Sie Ihren Space ein.
+        linkLabel: Demo buchen
+        href: "#"
+        image: { src: /assets/img/two_people_talking_tablet_member_profile_ui.webp, width: 136, height: 124 }
+    - label: Lernen und informiert bleiben
+      items:
+        - icon: fa-pen
+          title: Blog
+          desc: Tipps für den Betrieb eines Coworking Spaces
+          href: "#"
+        - icon: fa-envelope
+          title: Newsletter
+          desc: Neuigkeiten direkt in Ihr Postfach
+          href: "#"
+        - icon: fa-buildings
+          title: Fallstudien
+          desc: Wie Spaces mit Cobot wachsen
+          href: "#"
+        - icon: fa-square-list
+          title: Leitfäden
+          desc: Schritt-für-Schritt-Anleitungen
+          href: "#"
+      card:
+        title: Neuigkeiten
+        desc: Die neuesten Produkt-Updates und Releases.
+        linkLabel: Updates ansehen
+        href: "#"
+        image: { src: /assets/img/product_updates_whats_new.webp, width: 136, height: 124 }

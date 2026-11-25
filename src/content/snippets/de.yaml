@@ -1,0 +1,9 @@
+tryForFree:
+  heading: Cobot kostenlos testen
+  text: Starten Sie Ihren kostenlosen Testmonat. Ohne Verpflichtung, ohne Kreditkarte.
+  primary: { label: Kostenlos testen, href: "#" }
+  secondary: { label: Demo vereinbaren, href: "#" }
+article:
+  authorLabel: "Autor:"
+  updatedOn: Aktualisiert am
+  faqHeadline: Häufig gestellte Fragen

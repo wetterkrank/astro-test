@@ -1,0 +1,66 @@
+/* Pager dots — carousel position indicator */
+
+.pager {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.pager__dots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pager__dot {
+  position: relative;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  border-radius: 50%;
+  background-color: var(--color-electricblue-20);
+  cursor: pointer;
+  appearance: none;
+  transition-property: background-color, box-shadow;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.pager__dot::before {
+  content: "";
+  position: absolute;
+  inset: -1.125rem;
+}
+
+.pager__dot:hover,
+.pager__dot:focus {
+  background-color: var(--color-electricblue-40);
+  outline: none;
+}
+
+.pager__dot:focus-visible {
+  outline-width: 3px;
+  outline-style: solid;
+  outline-color: var(--color-focus-electricblue);
+  outline-offset: 3px;
+  box-shadow: var(--elevation-focus);
+}
+
+.pager__dot[aria-current="true"] {
+  background-color: var(--color-electricblue);
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pager__dot {
+    transition: none;
+  }
+}

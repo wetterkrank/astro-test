@@ -1,0 +1,96 @@
+/* Category hub card — learn hub browse grid (maps cobot_www .category-hub-card) */
+
+.category-hub-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--color-gray-90);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-gray-20);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+  transition-property: border-color, color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.category-hub-card:hover,
+.category-hub-card:focus {
+  border-color: var(--color-gray-90);
+  color: var(--color-gray-90);
+  outline: none;
+}
+
+.category-hub-card:focus-visible {
+  outline: 3px solid var(--color-focus-electricblue);
+  outline-offset: 3px;
+}
+
+.category-hub-card__top {
+  display: grid;
+  place-content: center;
+  min-height: 8rem;
+}
+
+.category-hub-card:nth-child(3n + 1) .category-hub-card__top {
+  background-color: var(--color-electricblue-30);
+}
+
+.category-hub-card:nth-child(3n + 2) .category-hub-card__top {
+  background-color: var(--color-coral);
+}
+
+.category-hub-card:nth-child(3n) .category-hub-card__top {
+  background-color: var(--color-peach);
+}
+
+.category-hub-card__icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.category-hub-card:nth-child(3n + 1) .category-hub-card__icon {
+  color: var(--color-electricblue-70);
+}
+
+.category-hub-card:nth-child(3n + 2) .category-hub-card__icon {
+  color: var(--color-gray-90);
+}
+
+.category-hub-card:nth-child(3n) .category-hub-card__icon {
+  color: var(--color-orange);
+}
+
+.category-hub-card__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-block: 1rem 1.5rem;
+  padding-inline: 1.5rem;
+  background-color: var(--color-white);
+}
+
+.category-hub-card__title {
+  margin-block: 0 0.5rem;
+  font-size: var(--font-size-24);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.category-hub-card__teaser {
+  margin: 0;
+  font-size: var(--font-size-16);
+  line-height: 1.5;
+}
+
+.category-hub-card__content > :last-child {
+  margin-block-start: auto;
+  padding-block-start: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-hub-card {
+    transition: none;
+  }
+}

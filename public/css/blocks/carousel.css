@@ -1,0 +1,121 @@
+/* Carousel — layout shell only (no JS). Pager: .pager; slides: any block. */
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.carousel__title {
+  margin: 0;
+  max-width: 36rem;
+}
+
+.carousel__frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--gutter);
+}
+
+.carousel__control {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  border-radius: var(--radius-3);
+  background-color: transparent;
+  color: var(--color-gray-40);
+  cursor: pointer;
+  appearance: none;
+  transition-property: color, background-color, box-shadow;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.carousel__control:hover,
+.carousel__control:focus {
+  color: var(--color-gray);
+  outline: none;
+}
+
+.carousel__control:focus-visible {
+  outline-width: 3px;
+  outline-style: solid;
+  outline-color: var(--color-focus-electricblue);
+  outline-offset: 3px;
+  box-shadow: var(--elevation-focus);
+}
+
+.carousel__control-icon {
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-solid);
+}
+
+.carousel__viewport {
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: var(--gutter);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel__slide {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.carousel__slide > .card {
+  height: 100%;
+}
+
+@media (min-width: 960px) {
+  .carousel__title {
+    align-self: center;
+    max-width: 48rem;
+    text-align: center;
+  }
+
+  .carousel__frame {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .carousel__control {
+    display: inline-flex;
+  }
+
+  .carousel__track {
+    grid-auto-columns: calc((100% - var(--gutter)) / 2);
+  }
+
+  .carousel .carousel__pager {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__control {
+    transition: none;
+  }
+
+  .carousel__viewport {
+    scroll-snap-type: none;
+  }
+}

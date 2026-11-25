@@ -1,0 +1,123 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getLocalized } from '../i18n/content';
+import { locales, type Locale } from '../i18n/locales';
+import type { Alternates } from '../i18n/utils';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  article: CollectionEntry<'learn'>['data'];
+  locale: Locale;
+  alternates?: Alternates;
+}
+
+const { article, locale, alternates } = Astro.props;
+const { data: snippets } = await getLocalized('snippets', locale);
+
+const isoDate = article.updated.toISOString().slice(0, 10);
+const dateParts = new Intl.DateTimeFormat(locales[locale].dateLocale, {
+  month: 'short',
+  day: '2-digit',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).formatToParts(article.updated);
+const part = (type: string) => dateParts.find((p) => p.type === type)?.value ?? '';
+// "Jul 02 2026", as in the template.
+const displayDate = `${part('month')} ${part('day')} ${part('year')}`;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description ?? article.intro}
+  locale={locale}
+  alternates={alternates}
+  styles={[
+    'blocks/type.css',
+    'blocks/button.css',
+    'blocks/link.css',
+    'blocks/author.css',
+    'blocks/prose.css',
+    'blocks/hero.css',
+    'blocks/faq.css',
+    'blocks/cta-band.css',
+    'utility/tachyons.css',
+    'utility/text-color.css',
+  ]}
+>
+  <main class="page-main" id="main-content" tabindex="-1">
+    <article class="mv6">
+      <section class="hero hero--article" aria-labelledby="learn-article-title">
+        <div class="container grid">
+          <div class="col-12 col-5-md start-2-md hero__copy">
+            <a class="link-arrow link-arrow--back" href={article.category.href}>
+              <i class="fa-solid fa-arrow-left link-arrow__icon" aria-hidden="true"></i>
+              <span class="link-arrow__label">{article.category.label}</span>
+            </a>
+            <h1 id="learn-article-title" class="heading--xl">{article.title}</h1>
+            <div class="author">
+              <span class="author__label visually-hidden">{snippets.article.authorLabel}</span>
+              <img
+                class="author__image"
+                src={article.author.image.src}
+                alt={article.author.image.alt}
+                width={article.author.image.width}
+                height={article.author.image.height}
+              />
+              <div class="author__meta">
+                <p class="author__name">{article.author.name}</p>
+                <p class="page-date"><time datetime={isoDate}>{snippets.article.updatedOn} {displayDate}</time></p>
+              </div>
+            </div>
+            <p class="bodycopy--default">{article.intro}</p>
+          </div>
+          <div class="col-12 col-6-md start-7-md hero__media-wrap">
+            <div class="hero__media-float">
+              <img
+                class="hero__media"
+                src={article.image.src}
+                alt={article.image.alt}
+                width={article.image.width}
+                height={article.image.height}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="article-band">
+        <div class="container grid">
+          <div class="col-12 col-8-md start-3-md">
+            <div class="prose bodycopy--default">
+              <slot />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {
+        article.faq && article.faq.items.length > 0 && (
+          <section class="container mv6" aria-labelledby="faqs">
+            <div class="grid">
+              <div class="col-12 col-8-md start-3-md">
+                <h2 id="faqs" class="heading--m">{article.faq.headline ?? snippets.article.faqHeadline}</h2>
+                {article.faq.items.map((item) => (
+                  <details class="faq">
+                    <summary class="faq__question">
+                      <h3 class="heading--xs">{item.question}</h3>
+                    </summary>
+                    <div class="faq__answer bodycopy--default">
+                      <p>{item.answer}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      }
+    </article>
+
+    <CtaBand id="learn-cta-heading" location="learn_article_page" {...snippets.tryForFree} />
+  </main>
+</BaseLayout>

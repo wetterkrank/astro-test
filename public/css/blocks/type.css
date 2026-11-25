@@ -1,0 +1,144 @@
+/* Ported from cobot_www app/assets/stylesheets/base/_typography.scss (CSS only). */
+
+html {
+  font-size: 16px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+hr {
+  display: block;
+  border: 0;
+  border-top: 1px solid var(--color-gray-20);
+  margin: 1rem 0;
+  padding: 0;
+  clear: both;
+}
+
+/* Headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading--xxl,
+.heading--xl,
+.heading--l,
+.heading--m,
+.heading--s,
+.heading--xs,
+.heading--xxs {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: var(--line-height-title);
+  font-weight: 700;
+}
+
+h5,
+h6,
+.heading--xs,
+.heading--xxs {
+  line-height: var(--line-height-title);
+  font-weight: 650;
+}
+
+/* Fixed type sizes for precise layout. Fluid clamp parked — restore later.
+   Former formulas used clamp(min, preferred, max) across ~320–1280px;
+   values below are the previous maxima mapped to --font-size-* tokens. */
+
+.heading--xxl {
+  /* clamp(2.5rem, 0.75rem + 5.5vw, 4.5rem) */
+  font-size: var(--font-size-72);
+  text-wrap: balance;
+}
+
+h1,
+.heading--xl {
+  /* clamp(2rem, 1.25rem + 2.5vw, 3.125rem) */
+  font-size: var(--font-size-50);
+  text-wrap: balance;
+}
+
+h2,
+.heading--l {
+  /* clamp(1.5rem, 1rem + 2vw, 2.5rem) */
+  font-size: var(--font-size-40);
+  text-wrap: balance;
+}
+
+h3,
+.heading--m {
+  /* clamp(1.25rem, 0.9rem + 1.5vw, 2rem) */
+  font-size: var(--font-size-32);
+  text-wrap: balance;
+}
+
+h4,
+.heading--s {
+  /* clamp(1rem, 0.8rem + 1vw, 1.5rem) */
+  font-size: var(--font-size-24);
+  text-wrap: balance;
+}
+
+h5,
+.heading--xs {
+  /* clamp(1rem, 0.85rem + 0.75vw, 1.25rem) */
+  font-size: var(--font-size-20);
+}
+
+h6,
+.heading--xxs {
+  font-size: var(--font-size-16);
+}
+
+.heading--eyebrow {
+  font-size: var(--font-size-16);
+  font-weight: normal;
+  color: var(--color-electricblue);
+  margin-bottom: 0;
+}
+
+/* Body copy */
+
+.bodycopy--big {
+  /* clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem) */
+  font-size: var(--font-size-24);
+}
+
+.bodycopy--default {
+  /* clamp(1rem, 0.9rem + 0.5vw, 1.25rem) */
+  font-size: var(--font-size-20);
+}
+
+.bodycopy--small {
+  /* clamp(0.75rem, 0.65rem + 0.5vw, 1rem) */
+  font-size: var(--font-size-16);
+}
+
+blockquote {
+  text-wrap: pretty;
+}
+
+/* Lists */
+
+ul,
+ol {
+  margin-inline-start: 0;
+  padding-inline-start: 1rem;
+  line-height: var(--line-height-copy);
+}
+
+ul > li,
+ol > li {
+  margin-bottom: 1rem;
+}
+
+.list-inline {
+  display: inline-flex;
+  gap: 1rem;
+}

@@ -1,0 +1,8 @@
+/* Shared text color utilities */
+
+.tc--white { color: var(--color-white); }
+.tc--gray-50 { color: var(--color-gray-50); }
+.tc--gray-70 { color: var(--color-gray-70); }
+.tc--coral { color: var(--color-coral); }
+.tc--purple-60 { color: var(--color-purple-60); }
+.tc--electricblue { color: var(--color-electricblue); }
