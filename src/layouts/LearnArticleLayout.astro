@@ -21,15 +21,17 @@ const { data: snippets } = await getLocalized('snippets', locale);
 const { data: articleSnippets } = await getLocalized('snippets', contentLocale);
 
 const isoDate = article.updated.toISOString().slice(0, 10);
-const dateParts = new Intl.DateTimeFormat(locales[contentLocale].dateLocale, {
-  month: 'short',
-  day: '2-digit',
-  year: 'numeric',
-  timeZone: 'UTC',
-}).formatToParts(article.updated);
-const part = (type: string) => dateParts.find((p) => p.type === type)?.value ?? '';
-// "Jul 02 2026", as in the template.
-const displayDate = `${part('month')} ${part('day')} ${part('year')}`;
+const dateLocale = locales[contentLocale].dateLocale;
+let displayDate: string;
+if (contentLocale === 'en') {
+  // "Jul 02 2026", as in the template.
+  const parts = new Intl.DateTimeFormat(dateLocale, { month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC' }).formatToParts(article.updated);
+  const part = (type: string) => parts.find((p) => p.type === type)?.value ?? '';
+  displayDate = `${part('month')} ${part('day')} ${part('year')}`;
+} else {
+  // The locale's own long form, e.g. "2. Juli 2026", "2 de julio de 2026".
+  displayDate = new Intl.DateTimeFormat(dateLocale, { dateStyle: 'long', timeZone: 'UTC' }).format(article.updated);
+}
 ---
 
 <BaseLayout
