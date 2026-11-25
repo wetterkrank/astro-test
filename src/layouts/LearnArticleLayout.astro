@@ -62,21 +62,27 @@ if (contentLocale === 'en') {
               <span class="link-arrow__label">{article.category.label}</span>
             </a>
             <h1 id="learn-article-title" class="heading--xl">{article.title}</h1>
-            <div class="author">
-              <span class="author__label visually-hidden">{articleSnippets.article.authorLabel}</span>
-              <img
-                class="author__image"
-                src={article.author.image.src}
-                alt={article.author.image.alt}
-                width={article.author.image.width}
-                height={article.author.image.height}
-              />
-              <div class="author__meta">
-                <p class="author__name">{article.author.name}</p>
+            {
+              article.author ? (
+                <div class="author">
+                  <span class="author__label visually-hidden">{articleSnippets.article.authorLabel}</span>
+                  <img
+                    class="author__image"
+                    src={article.author.image.src}
+                    alt={article.author.image.alt}
+                    width={article.author.image.width}
+                    height={article.author.image.height}
+                  />
+                  <div class="author__meta">
+                    <p class="author__name">{article.author.name}</p>
+                    <p class="page-date"><time datetime={isoDate}>{articleSnippets.article.updatedOn} {displayDate}</time></p>
+                  </div>
+                </div>
+              ) : (
                 <p class="page-date"><time datetime={isoDate}>{articleSnippets.article.updatedOn} {displayDate}</time></p>
-              </div>
-            </div>
-            <p class="bodycopy--default">{article.intro}</p>
+              )
+            }
+            {article.intro && <p class="bodycopy--default">{article.intro}</p>}
           </div>
           <div class="col-12 col-6-md start-7-md hero__media-wrap">
             <div class="hero__media-float">

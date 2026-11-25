@@ -177,9 +177,9 @@ const learn = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     category: z.object({ label: z.string(), href: z.string() }),
-    author: z.object({ name: z.string(), image }),
+    author: z.object({ name: z.string(), image }).optional(),
     updated: z.coerce.date(),
-    intro: z.string(),
+    intro: z.string().optional(),
     image,
     faq: z
       .object({
