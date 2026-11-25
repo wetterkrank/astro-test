@@ -1,4 +1,5 @@
 ---
+order: 1
 title: History of Coworking
 description: From early hacker spaces to today’s global coworking industry.
 category:

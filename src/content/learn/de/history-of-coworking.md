@@ -1,4 +1,5 @@
 ---
+order: 1
 title: Die Geschichte des Coworking
 description: Von frühen Hackerspaces bis zur heutigen globalen Coworking-Branche.
 category:
