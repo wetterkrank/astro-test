@@ -1,4 +1,5 @@
 ---
+order: 2
 title: Coworking Business Plan
 description: Why every coworking or flexible workspace needs a business plan, and where to find examples to start from.
 category:

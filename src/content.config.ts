@@ -176,6 +176,8 @@ const learn = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
+    /** Position in lists such as the footer's Learn column; lower comes first. */
+    order: z.number().optional(),
     category: z.object({ label: z.string(), href: z.string() }),
     author: z.object({ name: z.string(), image }).optional(),
     updated: z.coerce.date(),

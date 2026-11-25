@@ -40,5 +40,9 @@ export async function getEntriesWithFallback<C extends CollectionKey>(collection
     const { slug } = splitLocaleId(entry.id);
     bySlug.set(slug, { slug, entry, contentLocale: locale });
   }
-  return [...bySlug.values()];
+  return [...bySlug.values()].sort((a, b) => {
+    const orderA = (a.entry.data as { order?: number }).order ?? Infinity;
+    const orderB = (b.entry.data as { order?: number }).order ?? Infinity;
+    return orderA === orderB ? a.slug.localeCompare(b.slug) : orderA - orderB;
+  });
 }
