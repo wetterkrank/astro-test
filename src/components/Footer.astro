@@ -1,9 +1,9 @@
 ---
 import CobotLogo from './CobotLogo.astro';
 import LanguageSelect from './LanguageSelect.astro';
-import { getEntriesForLocale, getLocalized, splitLocaleId } from '../i18n/content';
+import { getEntriesWithFallback, getLocalized } from '../i18n/content';
 import { localizedUrl } from '../i18n/utils';
-import { defaultLocale, type Locale } from '../i18n/locales';
+import type { Locale } from '../i18n/locales';
 
 interface Props {
   locale: Locale;
@@ -13,13 +13,11 @@ interface Props {
 const { locale, alternates } = Astro.props;
 const { data: t } = await getLocalized('footer', locale);
 
-// Learn articles in this locale; fall back to the default locale's articles.
-let learnArticles = await getEntriesForLocale('learn', locale);
-if (learnArticles.length === 0) learnArticles = await getEntriesForLocale('learn', defaultLocale);
-const learnLinks = learnArticles.map((entry) => {
-  const { locale: entryLocale, slug } = splitLocaleId(entry.id);
-  return { label: entry.data.title, href: localizedUrl(entryLocale as Locale, `learn/${slug}`) };
-});
+// Learn articles as seen from this locale (translation, else English), linked under this locale.
+const learnLinks = (await getEntriesWithFallback('learn', locale)).map(({ slug, entry }) => ({
+  label: entry.data.title,
+  href: localizedUrl(locale, `learn/${slug}`),
+}));
 ---
 
 <footer class="footer" id="footer" role="contentinfo">

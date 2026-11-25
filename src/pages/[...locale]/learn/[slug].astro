@@ -1,0 +1,30 @@
+---
+import { render } from 'astro:content';
+import LearnArticleLayout from '../../../layouts/LearnArticleLayout.astro';
+import { getEntriesWithFallback } from '../../../i18n/content';
+import { defaultLocale, localeCodes } from '../../../i18n/locales';
+import { localizedUrl } from '../../../i18n/utils';
+
+// Every article exists under every locale: /learn/<slug>/, /de/learn/<slug>/, ...
+// A locale without a translation shows the English article inside its own header/footer.
+export async function getStaticPaths() {
+  const paths = await Promise.all(
+    localeCodes.map(async (locale) =>
+      (await getEntriesWithFallback('learn', locale)).map(({ slug, entry, contentLocale }) => ({
+        params: { locale: locale === defaultLocale ? undefined : locale, slug },
+        props: { locale, entry, contentLocale },
+      })),
+    ),
+  );
+  return paths.flat();
+}
+
+const { locale, entry, contentLocale } = Astro.props;
+const { slug } = Astro.params;
+const { Content } = await render(entry);
+const alternates = Object.fromEntries(localeCodes.map((code) => [code, localizedUrl(code, `learn/${slug}`)]));
+---
+
+<LearnArticleLayout article={entry.data} locale={locale} contentLocale={contentLocale} alternates={alternates}>
+  <Content />
+</LearnArticleLayout>

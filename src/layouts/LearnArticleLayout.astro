@@ -9,14 +9,19 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   article: CollectionEntry<'learn'>['data'];
   locale: Locale;
+  /** Language of the article body, when it differs from the page locale (untranslated fallback). */
+  contentLocale?: Locale;
   alternates?: Alternates;
 }
 
-const { article, locale, alternates } = Astro.props;
+const { article, locale, contentLocale = locale, alternates } = Astro.props;
+const contentLang = contentLocale === locale ? undefined : locales[contentLocale].htmlLang;
+// Chrome-level copy (CTA band) follows the page locale; article copy follows the article's language.
 const { data: snippets } = await getLocalized('snippets', locale);
+const { data: articleSnippets } = await getLocalized('snippets', contentLocale);
 
 const isoDate = article.updated.toISOString().slice(0, 10);
-const dateParts = new Intl.DateTimeFormat(locales[locale].dateLocale, {
+const dateParts = new Intl.DateTimeFormat(locales[contentLocale].dateLocale, {
   month: 'short',
   day: '2-digit',
   year: 'numeric',
@@ -46,7 +51,7 @@ const displayDate = `${part('month')} ${part('day')} ${part('year')}`;
   ]}
 >
   <main class="page-main" id="main-content" tabindex="-1">
-    <article class="mv6">
+    <article class="mv6" lang={contentLang}>
       <section class="hero hero--article" aria-labelledby="learn-article-title">
         <div class="container grid">
           <div class="col-12 col-5-md start-2-md hero__copy">
@@ -56,7 +61,7 @@ const displayDate = `${part('month')} ${part('day')} ${part('year')}`;
             </a>
             <h1 id="learn-article-title" class="heading--xl">{article.title}</h1>
             <div class="author">
-              <span class="author__label visually-hidden">{snippets.article.authorLabel}</span>
+              <span class="author__label visually-hidden">{articleSnippets.article.authorLabel}</span>
               <img
                 class="author__image"
                 src={article.author.image.src}
@@ -66,7 +71,7 @@ const displayDate = `${part('month')} ${part('day')} ${part('year')}`;
               />
               <div class="author__meta">
                 <p class="author__name">{article.author.name}</p>
-                <p class="page-date"><time datetime={isoDate}>{snippets.article.updatedOn} {displayDate}</time></p>
+                <p class="page-date"><time datetime={isoDate}>{articleSnippets.article.updatedOn} {displayDate}</time></p>
               </div>
             </div>
             <p class="bodycopy--default">{article.intro}</p>
@@ -100,7 +105,7 @@ const displayDate = `${part('month')} ${part('day')} ${part('year')}`;
           <section class="container mv6" aria-labelledby="faqs">
             <div class="grid">
               <div class="col-12 col-8-md start-3-md">
-                <h2 id="faqs" class="heading--m">{article.faq.headline ?? snippets.article.faqHeadline}</h2>
+                <h2 id="faqs" class="heading--m">{article.faq.headline ?? articleSnippets.article.faqHeadline}</h2>
                 {article.faq.items.map((item) => (
                   <details class="faq">
                     <summary class="faq__question">

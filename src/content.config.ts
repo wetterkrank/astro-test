@@ -153,6 +153,11 @@ const snippets = defineCollection({
       updatedOn: z.string(),
       faqHeadline: z.string(),
     }),
+    notFound: z.object({
+      title: z.string(),
+      text: z.string(),
+      homeLabel: z.string(),
+    }),
   }),
 });
 

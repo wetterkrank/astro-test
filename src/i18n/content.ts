@@ -20,3 +20,25 @@ export function splitLocaleId(id: string): { locale: string; slug: string } {
 export async function getEntriesForLocale<C extends CollectionKey>(collection: C, locale: Locale) {
   return getCollection(collection, (entry) => splitLocaleId(entry.id).locale === locale);
 }
+
+/**
+ * One entry per slug of a `<locale>/<slug>` collection, as seen from `locale`:
+ * the translation when it exists, otherwise the default-locale version.
+ * Slugs with neither are left out, so their URLs 404.
+ */
+export async function getEntriesWithFallback<C extends CollectionKey>(collection: C, locale: Locale) {
+  const [own, fallback] = await Promise.all([
+    getEntriesForLocale(collection, locale),
+    locale === defaultLocale ? Promise.resolve([]) : getEntriesForLocale(collection, defaultLocale),
+  ]);
+  const bySlug = new Map<string, { slug: string; entry: (typeof own)[number]; contentLocale: Locale }>();
+  for (const entry of fallback) {
+    const { slug } = splitLocaleId(entry.id);
+    bySlug.set(slug, { slug, entry, contentLocale: defaultLocale });
+  }
+  for (const entry of own) {
+    const { slug } = splitLocaleId(entry.id);
+    bySlug.set(slug, { slug, entry, contentLocale: locale });
+  }
+  return [...bySlug.values()];
+}
